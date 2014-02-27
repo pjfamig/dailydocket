@@ -35,7 +35,6 @@ h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: center;
 }
 
 h2 {
@@ -48,7 +47,6 @@ h2 {
 }
 
 p {
-  font-size: 1.1em;
   line-height: 1em;
 }
 
@@ -61,14 +59,16 @@ p {
   font-size: 1.7em;
   color: #666;
   letter-spacing: -1px;
-  padding-top: 12px;
   font-weight: bold;
   line-height: 1;
+  padding-top: 12px;
   &:hover {
     color: #333;
     text-decoration: none;
   }
 }
+
+/* navbar */
 
 
 /* footer */
