@@ -1,8 +1,10 @@
 Dailydocket::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/about"
-  get "static_pages/rules"
+  get "users/new"
   
+  root  'static_pages#home'
+  match '/about', to: 'static_pages#about', via: 'get'
+  match '/rules', to: 'static_pages#rules', via: 'get'
+  match '/signup',  to: 'users#new',        via: 'get'
   
   
   # The priority is based upon order of creation: first created -> highest priority.
