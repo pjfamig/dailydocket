@@ -38,6 +38,10 @@ textarea {
   margin-bottom: 10px;
 }
 
+li:hover {
+	background-color: #EEE;
+}
+
 
 /* typography */
 
@@ -74,16 +78,26 @@ p {
   color: #666;
   letter-spacing: -1px;
   font-weight: bold;
-  line-height: 1;
-  padding-top: 12px;
+  line-height: 1em;
+  padding-top: 8px;
+  height: 40px !important;
   &:hover {
     color: #333;
     text-decoration: none;
   }
 }
 
+
 /* navbar */
 
+.navbar-nav > li > a {
+	padding-top: 10px !important; 
+	padding-bottom: 10px !important;
+}
+
+.navbar {
+	min-height: 40px !important;
+}
 
 
 
