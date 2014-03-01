@@ -3,8 +3,8 @@ namespace :db do
   task populate: :environment do
     admin = User.create!(name: "Paul Famiglietti",
                  email: "pjfamig@gmail.com",
-                 password: "",
-                 password_confirmation: "",
+                 password: "fr0gger5",
+                 password_confirmation: "fr0gger5",
                  admin: true)
     99.times do |n|
       name  = Faker::Name.name

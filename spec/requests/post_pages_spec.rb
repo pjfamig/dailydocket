@@ -42,4 +42,8 @@ describe "Post pages" do
     
     end
   end
+
+  describe "post destruction" do
+
+  end
 end
