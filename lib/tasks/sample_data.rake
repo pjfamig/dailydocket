@@ -15,5 +15,12 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+    
+    users = User.all(limit: 6)
+    50.times do
+      headline = Faker::Lorem.sentence(5)
+      url = "http://paulfamiglietti.com"
+      users.each { |user| user.posts.create!(headline: headline, url: url) }
+    end
   end
 end

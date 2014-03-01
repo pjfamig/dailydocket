@@ -5,7 +5,7 @@
 	<h1>Sign up</h1>
 		
     <%= form_for(@user, :html => { :role => "form" }) do |f| %>
-    	<%= render 'shared/error_messages' %>
+    	<%= render 'shared/error_messages', object: f.object %>
 		<div class="form-group">
       		<%= f.label :name %>
       		<%= f.text_field :name, class: "form-control" %>
@@ -22,8 +22,9 @@
       		<%= f.label :password_confirmation, "Password Confirmation" %>
       		<%= f.password_field :password_confirmation, class: "form-control" %>
 		</div>
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-    <% end %>
+      <div class="btn-group"><%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      </div>
+	<% end %>
 
   	</div>
 

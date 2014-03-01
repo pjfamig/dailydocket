@@ -10,6 +10,13 @@ module SessionsHelper
     !current_user.nil?
   end
   
+  def admin_user
+    unless current_user.admin
+      flash[:danger] = "You do not have permission."
+      redirect_to(root_url)
+    end
+  end
+  
   def current_user=(user)
     @current_user = user
   end
@@ -21,6 +28,14 @@ module SessionsHelper
   
   def current_user?(user)
     user == current_user
+  end
+  
+  def signed_in_user
+    unless signed_in?
+      store_location
+      flash[:warning] = "Please sign in."
+      redirect_to signin_url
+    end
   end
   
   def sign_out

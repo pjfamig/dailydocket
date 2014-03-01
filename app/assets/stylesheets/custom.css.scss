@@ -38,6 +38,12 @@ textarea {
   margin-bottom: 10px;
 }
 
+@media (max-width: 768px) {
+    .btn, .btn-group {
+        width: 100%;
+    }
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -182,7 +188,23 @@ input {
 }
 
 
+/* posts */
 
+.posts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.headline {
+  display: block;
+}
+.timestamp {
+  color: #CCC;
+}
 
 
 /* miscellaneous */

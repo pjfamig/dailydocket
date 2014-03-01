@@ -9,4 +9,10 @@ FactoryGirl.define do
       admin true
     end
   end
+  
+  factory :post do
+    headline "Lorem ipsum"
+    url "http://paulfamiglietti.com"
+    user
+  end
 end

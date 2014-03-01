@@ -1,7 +1,10 @@
 Dailydocket::Application.routes.draw do
   resources :users  
+  resources :posts
   resources :sessions, only: [:new, :create, :destroy]
+  
   root  'static_pages#home'
+  match '/top',     to: 'posts#top',          via: 'get'
   match '/about',   to: 'static_pages#about', via: 'get'
   match '/rules',   to: 'static_pages#rules', via: 'get'
   match '/signup',  to: 'users#new',          via: 'get'
