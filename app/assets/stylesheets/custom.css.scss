@@ -38,11 +38,6 @@ textarea {
   margin-bottom: 10px;
 }
 
-li:hover {
-	background-color: #EEE;
-}
-
-
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -93,6 +88,10 @@ p {
 .navbar-nav > li > a {
 	padding-top: 10px !important; 
 	padding-bottom: 10px !important;
+}
+
+.tabs li:hover {
+	background-color: #EEE;
 }
 
 .navbar {
