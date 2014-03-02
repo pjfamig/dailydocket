@@ -15,4 +15,10 @@ FactoryGirl.define do
     url "http://paulfamiglietti.com"
     user
   end
+  
+  factory :comment do
+    content "Lorem ipsum"
+    user
+    post
+  end
 end
