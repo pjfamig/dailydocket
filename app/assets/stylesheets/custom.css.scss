@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 section {
@@ -97,7 +97,7 @@ p {
 }
 
 .tabs li:hover {
-	background-color: #EEE;
+	background-color: #DDD;
 }
 
 .navbar {
@@ -172,7 +172,7 @@ input {
 	@extend .has-error;
 }
 
-/* Users index */
+/* users index */
 
 .users {
   list-style: none;
@@ -188,9 +188,31 @@ input {
 }
 
 
-/* posts */
+/* news feed */
 
 .posts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+	padding: 22px 0;
+	&:not(:first-child) {
+      border-top: 1px solid #e8e8e8;
+	}
+  }
+  
+  h1 {
+	font-size: 1.6em;
+	letter-spacing: 0px;
+	margin-bottom: 4px;	
+	margin-top: 0px;
+  }
+}
+
+
+/* profile feed */
+
+.profile {
   list-style: none;
   margin: 10px 0 0 0;
 
@@ -198,7 +220,14 @@ input {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
+
+  h1 {
+	font-size: 1.2em;
+	letter-spacing: 0px;
+	margin-bottom: 2px;	
+  }
 }
+
 .headline {
   display: block;
 }

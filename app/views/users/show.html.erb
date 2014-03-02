@@ -8,8 +8,8 @@
 	</div>
 	<div class="col-md-6">
 		<% if @user.posts.any? %>
-	      <h3>Posts (<%= @user.posts.count %>)</h3>
-	      <ol class="list-unstyled posts">
+	      <h3>Recent Posts (<%= @user.posts.count %>)</h3>
+	      <ol class="list-unstyled profile">
 	        <%= render @posts %>
 	      </ol>
 	      <%= will_paginate @posts %>

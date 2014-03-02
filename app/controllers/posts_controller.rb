@@ -3,11 +3,22 @@ class PostsController < ApplicationController
   before_action :admin_user,     only: [:create, :destroy]
 
   def index
-    @posts = Post.paginate(page: params[:page])
+    if signed_in?
+      @post  = current_user.posts.build
+      @feed_items = Post.paginate(page: params[:page], :per_page => 20)
+    end
   end
   
   def top
-    @posts = Post.paginate(page: params[:page])    
+    #   add some more logic here: retrieve recent posts with many views and/or comments
+    #   1000 views, 10 comments = 
+    #   100 views, 10 comments = 
+    
+    if signed_in?
+      @post  = current_user.posts.build         
+    end
+    @feed_items = Post.paginate(page: params[:page], :per_page => 10)
+    render 'posts/index'   
   end
   
   def create
@@ -22,8 +33,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    post_id = params[:id]
     Post.find_by(id: params[:id]).destroy
-    flash[:success] = "Post deleted."
+    flash[:success] = "Post #{post_id} deleted."
     redirect_to root_url
   end
   
