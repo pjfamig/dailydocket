@@ -1,0 +1,10 @@
+<%= form_for([@post, @post.comments.build], :html => { :role => "form" }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+	<div class="form-group">
+		<%= f.label :content %>
+    	<%= f.text_area :content, class: "form-control", placeholder: "Enter new comment..." %>
+  	</div>
+  	<div class="btn-group">
+		<%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	</div>
+<% end %>

@@ -26,4 +26,14 @@ describe Comment do
     it { should_not be_valid }
   end
   
+  describe "with blank content" do
+    before { @comment.content = " " }
+    it { should_not be_valid }
+  end
+  
+  describe "with content that is too long" do
+    before { @comment.content = "a" * 8001 }
+    it { should_not be_valid }
+  end
+  
 end

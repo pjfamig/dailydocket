@@ -44,6 +44,22 @@ describe "Post pages" do
   end
 
   describe "post destruction" do
-
+    # need to add this test
   end
+  
+  describe "individual post page" do
+    let(:admin) { FactoryGirl.create(:admin) }
+    let!(:post) { FactoryGirl.create(:post, user: admin) }
+    let!(:comment) { FactoryGirl.create(:comment, user: admin, 
+                                        post: post, content: "First comment") }
+    before { visit post_path(post) }
+    
+    it { should have_content(post.headline) }
+    it { should have_title(post.headline) }
+    
+    describe "should display number of comments" do
+      it { should have_content(post.comments.count) }
+    end
+  end
+
 end

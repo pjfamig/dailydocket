@@ -1,6 +1,10 @@
 Dailydocket::Application.routes.draw do
   resources :users  
-  resources :posts
+  
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
+  
   resources :sessions, only: [:new, :create, :destroy]
   
   root  'posts#index'

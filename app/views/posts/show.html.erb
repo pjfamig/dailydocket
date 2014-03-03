@@ -1,0 +1,24 @@
+<% provide(:title, @post.headline.html_safe) %>
+<div class="row">
+	<div class="col-md-8">
+	  <ol class="list-unstyled posts">
+	  
+	<%= render @post %>
+	
+	<% if @post.comments.any? %>	
+	  	<h3>Comments (<%= @post.comments.count %>)</h3>
+		<ol class="list-unstyled comments">
+	    	<%= render @comments %>
+	   	</ol>
+		<%= will_paginate @comments %>
+	<% end %>
+	
+	
+	  <%= render 'shared/comment_form' %>
+    
+
+	  </ol>
+	</div>
+	<div class="col-md-4">		
+	</div>
+</div>

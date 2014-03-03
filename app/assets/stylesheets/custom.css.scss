@@ -1,13 +1,21 @@
-
-
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
+
+
+
+/* media queries */
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+@media (max-width: 768px) {   /* small buttons until collapse */
+    .btn, .btn-group {
+        width: 100%;
+    }
 }
 
 
@@ -38,11 +46,7 @@ textarea {
   margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
-    .btn, .btn-group {
-        width: 100%;
-    }
-}
+
 
 /* typography */
 
@@ -188,7 +192,7 @@ input {
 }
 
 
-/* news feed */
+/* news feeds */
 
 .posts {
   list-style: none;
@@ -209,8 +213,14 @@ input {
   }
 }
 
+.headline {
+  display: block;
+}
+.timestamp {
+  color: #AAA;
+}
 
-/* profile feed */
+/* profile news feed */
 
 .profile {
   list-style: none;
@@ -228,12 +238,25 @@ input {
   }
 }
 
-.headline {
-  display: block;
+
+
+/* comments */
+
+.comments {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
 }
-.timestamp {
-  color: #AAA;
+
+.content {
+	display: block;
 }
+
+
 
 
 /* miscellaneous */
