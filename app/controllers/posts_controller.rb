@@ -42,6 +42,9 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.paginate(page: params[:page], :per_page => 5)
+    @comment = @post.comments.build # if signed_in? => from tutorial, but
+                                    # was based on user association whereas 
+                                    # here we use posts
   end
   
   private

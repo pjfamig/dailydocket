@@ -7,16 +7,16 @@
 	
 	<% if @post.comments.any? %>	
 	  	<h3>Comments (<%= @post.comments.count %>)</h3>
+	
+	  <%= render 'shared/comment_form' %>
+	
 		<ol class="list-unstyled comments">
 	    	<%= render @comments %>
 	   	</ol>
 		<%= will_paginate @comments %>
 	<% end %>
-	
-	
-	  <%= render 'shared/comment_form' %>
+		
     
-
 	  </ol>
 	</div>
 	<div class="col-md-4">		

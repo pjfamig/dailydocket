@@ -21,6 +21,8 @@ describe "Post pages" do
       before { sign_in admin }
       before { visit root_path }
 
+      it { should have_content('Admin Panel') }
+
       describe "and invalid information" do
         it "should not create a post" do
           expect { click_button "Post" }.not_to change(Post, :count)
@@ -49,15 +51,22 @@ describe "Post pages" do
   
   describe "individual post page" do
     let(:admin) { FactoryGirl.create(:admin) }
+    let(:user) { FactoryGirl.create(:user) }
     let!(:post) { FactoryGirl.create(:post, user: admin) }
-    let!(:comment) { FactoryGirl.create(:comment, user: admin, 
+    
+    let!(:c1) { FactoryGirl.create(:comment, user: user, 
                                         post: post, content: "First comment") }
+    let!(:c2) { FactoryGirl.create(:comment, user: user, 
+                                        post: post, content: "Second comment") }
+
     before { visit post_path(post) }
     
     it { should have_content(post.headline) }
     it { should have_title(post.headline) }
     
-    describe "should display number of comments" do
+    describe "should display comments" do
+      it { should have_content(c1.content) }
+      it { should have_content(c2.content) }
       it { should have_content(post.comments.count) }
     end
   end

@@ -1,18 +1,29 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-12">
 		<h1>
 		<%= gravatar_for @user %>
 		<%= @user.name %>
-		</h1>
+		</h1>		
 	</div>
+</div>	
+<div class="row">
 	<div class="col-md-6">
 		<% if @user.posts.any? %>
 	      <h3>Recent Posts (<%= @user.posts.count %>)</h3>
 	      <ol class="list-unstyled profile">
 	        <%= render @posts %>
 	      </ol>
-	      <%= will_paginate @posts %>
-	    <% end %>		
+	      <%= will_paginate @posts, :param_name => 'p' %>
+	    <% end %>
+	</div>
+	<div class="col-md-6">
+		<% if @user.comments.any? %>
+		  <h3>Recent Comments (<%= @user.comments.count %>)</h3>
+	      <ol class="list-unstyled profile">
+	        <%= render @comments %>
+	      </ol>
+	      <%= will_paginate @comments, :param_name => 'c' %>		
+	 	<% end %>
 	</div>
 </div>

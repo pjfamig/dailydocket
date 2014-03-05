@@ -1,7 +1,7 @@
-<%= form_for([@post, @post.comments.build], :html => { :role => "form" }) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<%= form_for([@post, @comment], :html => { :role => "form" }) do |f| %>
+  <%= render :partial => 'shared/error_messages', :locals => { :object => @comment } %>
 	<div class="form-group">
-		<%= f.label :content %>
+		<%= f.label :content, class: "sr-only" %>
     	<%= f.text_area :content, class: "form-control", placeholder: "Enter new comment..." %>
   	</div>
   	<div class="btn-group">
