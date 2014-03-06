@@ -4,8 +4,13 @@ class PostsController < ApplicationController
 
   def index
     if signed_in?
-      @post  = current_user.posts.build
-      @feed_items = Post.paginate(page: params[:page], :per_page => 20)
+      @post  = current_user.posts.build                                                      
+      if params[:tag]
+        @feed_items = Post.tagged_with(params[:tag]).paginate(page: params[:page], 
+                                                              :per_page => 20)
+      else
+        @feed_items = Post.paginate(page: params[:page], :per_page => 20)
+      end
     end
   end
   
@@ -50,7 +55,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:headline, :url)
+      params.require(:post).permit(:headline, :url, :tag_list)
     end
   
     def correct_user

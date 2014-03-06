@@ -1,5 +1,10 @@
 <li id="<%= feed_item.id %>">
   <span class="headline"><h1><%= link_to feed_item.headline, feed_item.url %></h1></span>
+
+  <% if feed_item.tags.any? %>
+  <span class="tags"><%= raw feed_item.tag_list.map { |t| link_to t.titleize, tag_path(t) }.join(', ') %></span>
+  <% end %>
+
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>
