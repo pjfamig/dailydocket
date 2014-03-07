@@ -2,7 +2,7 @@
   <span class="headline"><h1><%= link_to post.headline, post.url %></h1></span>
   
   <% if post.tags.any? %>
-  <span class="tags"><%= raw post.tag_list.map { |t| link_to t.titleize, tag_path(t) }.join(', ') %></span>
+	<%= raw post.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "btn btn-success btn-xs" }.join(' ') %>
   <% end %>
 
   <span class="timestamp">

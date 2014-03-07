@@ -2,6 +2,9 @@
 	<div class="col-md-8">
 		<% if signed_in? && current_user.admin? %>	
 			
+			<% if params[:tag] %>
+				<h1><%= params[:tag].titleize %></h1>
+			<% end %>
 			<!-- render news feed w/ delete links -->
 	    	<%= render 'shared/feed' %>
 	

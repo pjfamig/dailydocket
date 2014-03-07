@@ -13,7 +13,7 @@ $grayMediumLight: #eaeaea;
 }
 
 @media (max-width: 768px) {   /* small buttons until collapse */
-    .btn, .btn-group {
+    .btn .btn-large, .btn-group {
         width: 100%;
     }
 }

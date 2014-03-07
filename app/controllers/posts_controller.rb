@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     if signed_in?
       @post  = current_user.posts.build                                                      
       if params[:tag]
+        @tag = 
         @feed_items = Post.tagged_with(params[:tag]).paginate(page: params[:page], 
                                                               :per_page => 20)
       else
