@@ -1,16 +1,14 @@
 <li>
-  <span class="user"><%= link_to comment.user.name, comment.user %><span class="timestamp">
-    Posted <%= time_ago_in_words(comment.created_at) %> ago.
-  </span></span>
-  <span class="content"><%= comment.content %></span>
-
-
-<%= link_to "Reply", new_post_comment_path(comment.post_id, :parent_id => comment) %>
-
-  <% if current_user?(comment.user) %>| 
+  <span class="user"><%= link_to comment.user.name, comment.user %>
+	<span class="timestamp">Posted <%= time_ago_in_words(comment.created_at) %> ago.</span>
+	<% if current_user?(comment.user) %> 
     <%= link_to "delete", post_comment_path(comment.post_id, comment), method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: comment.content %>
-  <% end %>
+  <% end %>	
+  </span>
+  <span class="content"><%= comment.content %></span>
 
+
+<%= link_to "Reply", new_post_comment_path(comment.post_id, :parent_id => comment), id: "reply-to-post-" + comment.id.to_s, remote: true %>
 </li>

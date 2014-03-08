@@ -5,6 +5,7 @@
 			<% if params[:tag] %>
 				<h1><%= params[:tag].titleize %></h1>
 			<% end %>
+			
 			<!-- render news feed w/ delete links -->
 	    	<%= render 'shared/feed' %>
 	
@@ -14,6 +15,7 @@
 	      	<%= render 'shared/feed' %>
 			
 		<% else %>
+		
 			<!-- render news feed with no user options or delete links -->
 			<h1>DailyDocket</h1>
 			<p>This is the home page for <a href="http://dailydocket.org/">DailyDocket.org</a>.

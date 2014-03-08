@@ -5,7 +5,7 @@
 	  
 	<%= render @post %>
 	
-	<% if @post.comments.any? %>	
+	<% if @post.comments.any? #changed from exists? for tests to pass %>	
 	  	<h3>Comments (<%= @post.comments.count %>)</h3>
 	
 	  <%= render 'shared/comment_form' %>

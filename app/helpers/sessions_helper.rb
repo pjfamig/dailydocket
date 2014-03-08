@@ -32,9 +32,17 @@ module SessionsHelper
   
   def signed_in_user
     unless signed_in?
-      store_location
-      flash[:warning] = "Please sign in."
-      redirect_to signin_url
+      respond_to do |format|
+        format.html {
+          store_location
+          flash[:warning] = "Please sign in."
+          redirect_to signin_url } 
+        format.js {
+          flash[:warning] = "Please sign in."
+          flash.keep(:warning)
+          render js: "window.location.pathname = #{signin_path.to_json}"
+        }
+      end
     end
   end
   
