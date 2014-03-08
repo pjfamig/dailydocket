@@ -1,5 +1,6 @@
 <%= render @comment.parent if @comment.parent %>
 
 <%= render 'shared/comment_form' %>
+
 <br>
 <p><%= link_to "Back to post", post_path(@comment.post_id) %></p>

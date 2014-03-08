@@ -7,12 +7,12 @@
 	
 	<% if @post.comments.any? #changed from exists? for tests to pass %>	
 	  	<h3>Comments (<%= @post.comments.count %>)</h3>
-	
-	  <%= render 'shared/comment_form' %>
+	  		<%= render 'shared/comment_form' %>
 	
 		<ol class="list-unstyled comments">
 	    	<%= nested_comments @comments.arrange(:order => :created_at) %>
 	   	</ol>
+	
 		<%= will_paginate @comments %>
 	<% end %>
 		
