@@ -2,9 +2,9 @@ Dailydocket::Application.routes.draw do
   resources :users  
   
   resources :posts do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:new, :create, :destroy]
   end
-  
+    
   resources :sessions, only: [:new, :create, :destroy]
   
   root  'posts#index'

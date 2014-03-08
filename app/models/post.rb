@@ -6,5 +6,4 @@ class Post < ActiveRecord::Base
   validates :url, presence: true
   validates :headline, presence: true
   acts_as_taggable
-    
 end

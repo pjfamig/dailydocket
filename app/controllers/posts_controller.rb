@@ -6,11 +6,10 @@ class PostsController < ApplicationController
     if signed_in?
       @post  = current_user.posts.build                                                      
       if params[:tag]
-        @tag = 
         @feed_items = Post.tagged_with(params[:tag]).paginate(page: params[:page], 
                                                               :per_page => 20)
       else
-        @feed_items = Post.paginate(page: params[:page], :per_page => 20)
+        @feed_items = Post.paginate(page: params[:page], :per_page => 10)
       end
     end
   end
@@ -47,7 +46,7 @@ class PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.paginate(page: params[:page], :per_page => 5)
+    @comments = @post.comments.paginate(page: params[:page], :per_page => 20)
     @comment = @post.comments.build # if signed_in? => from tutorial, but
                                     # was based on user association whereas 
                                     # here we use posts

@@ -1,6 +1,7 @@
 <%= form_for([@post, @comment], :html => { :role => "form" }) do |f| %>
   <%= render :partial => 'shared/error_messages', :locals => { :object => @comment } %>
 	<div class="form-group">
+		<%= f.hidden_field :parent_id %>
 		<%= f.label :content, class: "sr-only" %>
     	<%= f.text_area :content, class: "form-control", placeholder: "Enter new comment..." %>
   	</div>

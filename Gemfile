@@ -28,6 +28,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate'
 gem 'acts-as-taggable-on'
+gem 'ancestry'
 
 
 group :doc do

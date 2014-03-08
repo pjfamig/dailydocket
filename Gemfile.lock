@@ -27,6 +27,8 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (3.0.1)
       rails (>= 3, < 5)
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
     arel (4.0.2)
     atomic (1.1.15)
     bcrypt-ruby (3.1.2)
@@ -162,6 +164,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  ancestry
   bcrypt-ruby (= 3.1.2)
   bootstrap-sass (~> 3.1.1)
   bootstrap-will_paginate

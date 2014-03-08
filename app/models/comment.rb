@@ -5,4 +5,5 @@ class Comment < ActiveRecord::Base
   validates :user_id, presence: true
   validates :post_id, presence: true
   validates :content, presence: true, length: { maximum: 8000 }
+  has_ancestry 
 end

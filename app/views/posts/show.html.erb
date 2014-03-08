@@ -11,7 +11,7 @@
 	  <%= render 'shared/comment_form' %>
 	
 		<ol class="list-unstyled comments">
-	    	<%= render @comments %>
+	    	<%= nested_comments @comments.arrange(:order => :created_at) %>
 	   	</ol>
 		<%= will_paginate @comments %>
 	<% end %>
