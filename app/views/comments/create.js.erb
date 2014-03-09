@@ -1,0 +1,3 @@
+$('#new_comment_form').remove();
+$('#reply-to-post-<%= @comment.parent_id %>').show();
+$('#empty_space_for_<%= @comment.parent_id %>').append('<%= j render(@comment) %>');

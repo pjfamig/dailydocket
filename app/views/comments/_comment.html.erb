@@ -12,3 +12,4 @@
 
 <%= link_to "Reply", new_post_comment_path(comment.post_id, :parent_id => comment), id: "reply-to-post-" + comment.id.to_s, remote: true %>
 </li>
+

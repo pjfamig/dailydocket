@@ -31,7 +31,7 @@
 			</li>
 		</ul>
 		
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-right tabs">
 			<% if signed_in? %>
             <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "Users", users_path %></li>
             <li class="dropdown">

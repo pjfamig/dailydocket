@@ -13,8 +13,12 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      flash[:success] = "Comment created!" 
-      redirect_to post_path(@post)   
+      respond_to do |format|
+        format.html { redirect_to post_path(@post) }
+        format.js
+      end
+      # => flash[:success] = "Comment created!" 
+      # => redirect_to post_path(@post)   
     else
       @comments = @post.comments.paginate(page: params[:page], :per_page => 20)
       render 'posts/show'
