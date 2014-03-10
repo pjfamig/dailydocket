@@ -1,12 +1,17 @@
 <li id="<%= feed_item.id %>">
-	<span class="headline">
-	 <h1>
-	  <% if feed_item.image_url %>	
+	<div class="row">
+	  <% if feed_item.image_url %>
+		<div class="col-xs-2">
 	   <%= image_tag feed_item.image_url(:thumb).to_s %>
+		</div>	
+		<div class="col-xs-10">
+	  <% else %>
+		<div class="col-xs-12">
 	  <% end %>
+	 <h1>
 	  <%= link_to feed_item.headline, feed_item.url %>
 	 </h1>
-	</span>
+	
 
   <% if feed_item.tags.any? %>
 	<%= raw feed_item.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "btn btn-success btn-xs" }.join(' ') %>
@@ -24,4 +29,6 @@
                                      data: { confirm: "You sure?" },
                                      title: feed_item.headline %>
   <% end %>
+		</div>
+	</div>
 </li>
