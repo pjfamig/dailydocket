@@ -1,5 +1,13 @@
 <li>
-  <span class="headline"><h1><%= link_to post.headline, post.url %></h1></span>
+	<span class="headline">
+	 <h1>
+	 <% if post.image_url %>
+	  <%= image_tag post.image_url(:thumb).to_s %>
+     <% end %>
+	 
+	 <%= link_to post.headline, post.url %>
+	 </h1>
+	</span>
   
   <% if post.tags.any? %>
 	<%= raw post.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "btn btn-success btn-xs" }.join(' ') %>

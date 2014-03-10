@@ -6,4 +6,5 @@ class Post < ActiveRecord::Base
   validates :url, presence: true, :url => true
   validates :headline, presence: true
   acts_as_taggable
+  mount_uploader :image, ImageUploader
 end

@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:headline, :url, :tag_list)
+      params.require(:post).permit(:headline, :url, :tag_list, :image, :remote_image_url)
     end
   
     def correct_user

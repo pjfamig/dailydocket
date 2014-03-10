@@ -29,7 +29,10 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate'
 gem 'acts-as-taggable-on'
 gem 'ancestry'
-gem "validate_url"
+gem 'validate_url'
+# gem 'rmagick'
+gem 'mini_magick'
+gem 'carrierwave'
 
 
 group :doc do
