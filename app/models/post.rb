@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  headline   :string(255)
+#  url        :string(255)
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  image      :string(255)
+#
+
 class Post < ActiveRecord::Base
   has_many :comments
   belongs_to :user
