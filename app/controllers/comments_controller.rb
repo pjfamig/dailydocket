@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_action :signed_in_user
   before_action :correct_user,   only: :destroy
 
-
   def new
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(:parent_id => params[:parent_id])

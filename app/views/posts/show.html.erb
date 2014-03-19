@@ -12,9 +12,14 @@
 	    	<%= nested_comments @comments.arrange(:order => :created_at) %>
 	   	</ol>
 		<hr>
-		<h5>Your Comment</h5>
-  		<%= render 'shared/comment_form' %>
-
+		
+		<% if signed_in? %>
+			<h5>Your Comment</h5>
+  			<%= render 'shared/comment_form' %>
+		<% else %>
+			<!-- Keep comment_form, but prompt for sign-up upon input -->
+			Please <%= link_to 'login', signin_path %> to post a comment. 
+		<% end %>
 	
 		<%= will_paginate @comments %>
 	<% end %>

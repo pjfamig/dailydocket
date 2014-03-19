@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :admin_user,     only: [:create, :destroy]
-
+  
   def index
     if signed_in?
       @post  = current_user.posts.build                                                      
