@@ -18,6 +18,7 @@ describe User do
   it { should respond_to(:posts) }
   it { should respond_to(:feed) }
   it { should respond_to(:comments) }
+  it { should respond_to(:image) }
   
   
   it { should be_valid }

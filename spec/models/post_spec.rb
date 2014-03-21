@@ -12,6 +12,8 @@ describe Post do
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   it { should respond_to(:comments) }
+  it { should respond_to(:image) }
+  
   
   its(:user) { should eq user }
   
