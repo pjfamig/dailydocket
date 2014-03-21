@@ -31,7 +31,6 @@ gem 'acts-as-taggable-on'
 gem 'ancestry'
 gem 'validate_url'
 gem 'rmagick', :require => 'RMagick'
-# gem 'mini_magick'
 gem 'carrierwave'
 gem 'annotate', ">=2.6.0"
 
