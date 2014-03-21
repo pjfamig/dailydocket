@@ -8,6 +8,11 @@ FactoryGirl.define do
     factory :admin do
       admin true
     end
+    
+    factory :superadmin do
+      admin true
+      superadmin true
+    end
   end
   
   factory :post do

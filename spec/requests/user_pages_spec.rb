@@ -40,14 +40,23 @@ describe "User pages" do
           sign_in admin
           visit users_path
         end
-
+        it { should_not have_link('delete') }
+      end
+      
+      describe "as a SUPERadmin user" do
+        let(:superadmin) { FactoryGirl.create(:superadmin) }
+        before do
+          sign_in superadmin
+          visit users_path
+        end
+        
         it { should have_link('delete', href: user_path(User.first)) }
         it "should be able to delete another user" do
           expect do
             click_link('delete', match: :first)
           end.to change(User, :count).by(-1)
         end
-        it { should_not have_link('delete', href: user_path(admin)) }
+        it { should_not have_link('delete', href: user_path(superadmin)) }
       end
     end    
     
