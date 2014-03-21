@@ -6,10 +6,10 @@ describe "User pages" do
 
   describe "index" do
     
-    let(:user) { FactoryGirl.create(:user) }
+    let(:admin) { FactoryGirl.create(:admin) }
 
     before do
-      sign_in user
+      sign_in admin
       visit users_path
     end
     

@@ -26,12 +26,12 @@ describe "Authentication" do
       end
     end
     
-    describe "with valid information" do
+    describe "with valid information as non-Admin" do
       let(:user) { FactoryGirl.create(:user) }
       before { sign_in user }
 
       it { should have_title(user.name) }
-      it { should have_link('Users',       href: users_path) }
+      it { should_not have_link('Users',       href: users_path) }
       it { should have_link('Settings',    href: edit_user_path(user)) }
       it { should have_link('Profile',     href: user_path(user)) }
       it { should have_link('Sign out',    href: signout_path) }
@@ -42,6 +42,17 @@ describe "Authentication" do
         it { should have_link('Sign in') }
       end
     
+    end
+    describe "with valid information as Admin" do
+      let(:admin) { FactoryGirl.create(:admin) }
+      before { sign_in admin }
+      it { should have_link('Users',       href: users_path) }
+    end
+    
+    describe "with valid information as SUPER-admin" do
+      let(:superadmin) { FactoryGirl.create(:superadmin) }
+      before { sign_in superadmin }
+      it { should have_link('Users',       href: users_path) }
     end
   end
 
@@ -134,6 +145,11 @@ describe "Authentication" do
 
       before { sign_in non_admin, no_capybara: true }
 
+      describe "visiting the user index" do
+        before { visit users_path }
+        it { should have_title('Sign in') }
+      end
+      
       describe "submitting a DELETE request to the Users#destroy action" do
         before { delete user_path(user) }
         specify { expect(response).to redirect_to(root_url) }
