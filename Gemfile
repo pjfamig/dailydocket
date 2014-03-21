@@ -30,8 +30,7 @@ gem 'bootstrap-will_paginate'
 gem 'acts-as-taggable-on'
 gem 'ancestry'
 gem 'validate_url'
-# gem 'rmagick'
-gem 'mini_magick'
+gem 'rmagick', :require => 'RMagick'
 gem 'carrierwave'
 
 
