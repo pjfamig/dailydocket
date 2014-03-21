@@ -55,8 +55,7 @@ module SessionsHelper
   
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
-    clear_return_to
-    # session.delete(:return_to)
+    session.delete(:return_to)
   end
 
   private 
@@ -65,8 +64,8 @@ module SessionsHelper
       session[:return_to] = request.url if request.get?
     end
     
-    def clear_return_to
-      session[:return_to] = nil
-    end
+    #def clear_return_to
+     # session[:return_to] = nil
+    #end
   
 end
