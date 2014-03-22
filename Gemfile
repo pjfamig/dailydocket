@@ -33,6 +33,7 @@ gem 'validate_url'
 gem 'rmagick', :require => 'RMagick'
 gem 'carrierwave'
 gem 'annotate', ">=2.6.0"
+gem 'fog'
 
 
 group :doc do

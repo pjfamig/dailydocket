@@ -11,6 +11,7 @@
 #  remember_token  :string(255)
 #  admin           :boolean          default(FALSE)
 #  image           :string(255)
+#  superadmin      :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
