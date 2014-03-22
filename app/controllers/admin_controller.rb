@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_action :admin_user,      only: :index
+  before_action :admin_user, only: :index
 
   def index
     @feed_items = Post.paginate(page: params[:page], :per_page => 10)
