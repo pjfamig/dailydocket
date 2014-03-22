@@ -1,0 +1,54 @@
+<% provide(:title, 'Admin Section') %>
+
+<div class="row">
+	<div class="col-md-12">
+
+<h1>Admin-only section</h1>
+
+<div id="admin_tabs">
+<ul class="nav nav-tabs">
+  <li class="active">
+	<a href="#active_posts" data-toggle="tab" class="active">Active Posts</a>
+  </li>
+  <li>
+	<%= link_to "Pending Posts", admin_pending_posts_path(:format => :js), :remote => true,
+					'data-toggle' => 'tab', 'data-target' => '#pending_posts' %>
+  </li>
+  <li>
+	<%= link_to "Recent Comments", admin_recent_comments_path(:format => :js), :remote => true,
+					'data-toggle' => 'tab', 'data-target' => '#recent_comments'  %>
+  </li>
+
+<% if current_user.superadmin? %>
+  <li>
+	<%= link_to "Users", admin_users_path(:format => :js), :remote => true,
+					'data-toggle' => 'tab', 'data-target' => '#users'  %>
+  </li>
+<% end 	%>
+</ul>
+</div>
+
+
+<div class="tab-content">
+  <div class="tab-pane active fade in" id="active_posts">
+  	<%= render 'shared/feed' %>
+  </div>
+  <div class="tab-pane fade" id="pending_posts">
+  </div>
+  <div class="tab-pane fade" id="recent_comments">
+  </div>
+
+<% if current_user.superadmin? %>
+  <div class="tab-pane fade" id="users">
+  </div>
+<% end %>
+</div>
+
+
+<h3></h3>
+<ul class="list-unstyled posts">
+</ul>
+
+</div>
+
+</div>

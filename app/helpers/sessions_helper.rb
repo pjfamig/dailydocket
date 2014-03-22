@@ -17,6 +17,10 @@ module SessionsHelper
     end
   end
   
+  def superadmin_user
+    redirect_to(root_url) unless current_user.superadmin?
+  end
+  
   def current_user=(user)
     @current_user = user
   end

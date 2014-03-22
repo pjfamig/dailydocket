@@ -6,6 +6,7 @@ Dailydocket::Application.routes.draw do
   end
     
   resources :sessions, only: [:new, :create, :destroy]
+  resources :admin, only: :index
   
   root  'posts#index'
   match '/top',     to: 'posts#top',          via: 'get'
@@ -15,6 +16,11 @@ Dailydocket::Application.routes.draw do
   match '/signin',  to: 'sessions#new',       via: 'get'
   match '/signout', to: 'sessions#destroy',   via: 'delete'
   get   'topics/:tag',to: 'posts#index',        as: :tag
+  
+  get   'admin/live_posts' => 'admin#live_posts', :as => :admin_live_posts
+  get   'admin/pending_posts' => 'admin#pending_posts', :as => :admin_pending_posts
+  get   'admin/recent_comments' => 'admin#recent_comments', :as => :admin_recent_comments
+  get   'admin/users' => 'admin#users', :as => :admin_users
   
   
   # The priority is based upon order of creation: first created -> highest priority.
