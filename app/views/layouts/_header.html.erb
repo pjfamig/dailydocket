@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsed-content">
         <span class="sr-only">Toggle navigation</span>
@@ -11,7 +11,7 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="collapsed-content">
+    <!--<div class="collapse navbar-collapse" id="collapsed-content">
 		<ul class="nav navbar-nav tabs">
 			<li class="<%= 'active' if current_page?(root_path) %>">
 				<%= link_to "News", root_path %></li>
@@ -30,7 +30,7 @@
 				</ul>
 			</li>
 		</ul>
-		
+		-->
 		<ul class="nav navbar-nav navbar-right tabs">
 			<% if signed_in? && current_user.admin? %>
             <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "Users", users_path %></li>
@@ -69,6 +69,7 @@
           <% end %>
 		</ul>
 	</div>
-   </div><!-- /.navbar-collapse -->
+   </div> <!-- /.navbar-collapse -->
+  
   </div><!-- /.container-fluid -->
 </nav>

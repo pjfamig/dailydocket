@@ -1,23 +1,23 @@
 <%= form_for(@post, :html => { :multipart => true, :role => "form" }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 	<div class="form-group">
-		<%= f.label :new_headline %>
+		<%= f.label :new_headline, class: "sr-only" %>
     	<%= f.text_field :headline, class: "form-control", placeholder: "Enter new headline..." %>
   	</div>
  	<div class="form-group">
-		<%= f.label :new_link %>
+		<%= f.label :new_link, class: "sr-only" %>
     	<%= f.text_field :url, class: "form-control", placeholder: "Full URL: \"http://www.google.com/news\"" %>
   	</div>
 	<div class="form-group">
-		<%= f.label :tag_list, "Tags (separated by commas)" %>
+		<%= f.label :tag_list, "Tags (separated by commas)", class: "sr-only"%>
 		<%= f.text_field :tag_list, class: "form-control", placeholder: "Tags..." %>
 	</div>	
 	<div class="form-group">
-		<%= f.label :image %>
+		<%= f.label :image, class: "sr-only" %>
 		<%= f.file_field :image, class: "form-control" %>
 	</div>
 	<div class="form-group">
-		<%= f.label :remote_iamge_url, "or image URL" %>
+		<%= f.label :remote_iamge_url, "or image URL", class: "sr-only" %>
 		<%= f.text_field :remote_image_url, class: "form-control", placeholder: "Enter URL for image" %>
 	</div>	
   	<div class="btn-group">

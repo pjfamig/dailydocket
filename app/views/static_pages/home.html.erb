@@ -1,32 +1,9 @@
-<div class="row">
-	<div class="col-md-8">
-		<% if signed_in? && current_user.admin? %>	
-			
-			<!-- render news feed w/ delete links -->
-	    	<%= render 'shared/feed' %>
-	
-		<% elsif signed_in? %>
-		
-			<!-- render news feed w/ user options but no delete links -->
-	      	<%= render 'shared/feed' %>
-			
-		<% else %>
-			<!-- render news feed with no user options or delete links -->
-			<h1>DailyDocket</h1>
-			<p>This is the home page for <a href="http://dailydocket.org/">DailyDocket.org</a>.
-			</p>
-			<p>Currently this space is empty, 
-				but there will be a news feed even for non-logged in users.</p>
-		<% end %>
-	</div>
-		
-	<div class="col-md-4">
+
 		<% if signed_in? && current_user.admin? %>		
 			<!-- render form to add links -->
 			<h1>Admin Panel</h1>
 			<%= render 'shared/post_form' %>
 		<% else %>
 		<% end %>	
-	</div>	
-</div>
+
 	

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :admin_user,     only: [:create, :destroy]
   
-  def index
+  def index    
     if signed_in?
       @post  = current_user.posts.build                                                      
       if params[:tag]
@@ -51,6 +51,8 @@ class PostsController < ApplicationController
                                     # was based on user association whereas 
                                     # here we use posts
   end
+  
+
   
   private
 

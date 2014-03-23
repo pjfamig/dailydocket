@@ -13,7 +13,7 @@ describe 'Admin pages' do
       visit admin_index_path
     end
       
-    it { should have_content('Admin-only section') }
+    it { should have_content('New Post') }
     it { should have_content('Active Posts') }
     it { should have_content('Pending Posts') }
     it { should have_title('Admin Section') }

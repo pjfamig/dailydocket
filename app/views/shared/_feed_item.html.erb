@@ -1,27 +1,38 @@
 <li id="<%= feed_item.id %>">
 	<div class="row">
+		
+		<!--
 	  <% if feed_item.image_url %>
-		<div class="col-sm-2">
+		<div class="col-sm-1">
 	   <%= image_tag feed_item.image_url(:thumb).to_s %>
 		</div>	
-		<div class="col-sm-10">
+		<div class="col-sm-11" style="padding-left: 34px;">
 	  <% else %>
 		<div class="col-xs-12">
 	  <% end %>
-	 <h1>
-	  <%= link_to feed_item.headline, feed_item.url %>
-	 </h1>
-	
+		-->
+		<div class="col-xs-9">
 
+	 <h1>
+	  <%= link_to feed_item.headline, feed_item.url %> <small><i>example.com</i></small>
+	 </h1>
+	<span class="timestamp">
+    <small>Posted <%= time_ago_in_words(feed_item.created_at) %> ago.</small>
+  </span>
+
+<!--
   <% if feed_item.tags.any? %>
 	<%= raw feed_item.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "btn btn-success btn-xs" }.join(' ') %>
   <% end %>
 
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
-  </span>
+<span class="label label-success">Patent</span> <span class="label label-primary">Copyright</span>
+-->
 
-<%= link_to "comments", feed_item %>
+<br>
+ <%= link_to "Comments", feed_item %>
+
+
+
 
 <% if current_user.admin? %>
     | 
@@ -29,6 +40,12 @@
                                      data: { confirm: "You sure?" },
                                      title: feed_item.headline %>
   <% end %>
+		</div>
+		
+		<div class="col-xs-3">
+	
+		<span class="label label-warning">Patent</span>
+		<span class="label label-success">Patent</span> <span class="label label-primary">Copyright</span>
 		</div>
 	</div>
 </li>

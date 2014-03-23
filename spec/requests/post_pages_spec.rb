@@ -19,9 +19,9 @@ describe "Post pages" do
     describe "as Admin user" do
       let(:admin) { FactoryGirl.create(:admin) }
       before { sign_in admin }
-      before { visit root_path }
+      before { visit admin_index_path }
 
-      it { should have_content('Admin Panel') }
+      it { should have_content('New Post') }
 
       describe "and invalid information" do
         it "should not create a post" do
