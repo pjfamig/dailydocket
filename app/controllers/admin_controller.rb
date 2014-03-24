@@ -5,7 +5,6 @@ class AdminController < ApplicationController
   def index
     @feed_items = Post.paginate(page: params[:page], :per_page => 10)
     @post  = current_user.posts.build                                                      
- 
   end
   
   def live_posts
