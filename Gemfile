@@ -34,7 +34,7 @@ gem 'rmagick', :require => 'RMagick'
 gem 'carrierwave'
 gem 'annotate', ">=2.6.0"
 gem 'fog'
-
+gem 'activerecord-reputation-system', github: 'NARKOZ/activerecord-reputation-system', branch: 'rails4'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
