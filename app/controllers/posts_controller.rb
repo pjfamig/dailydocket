@@ -20,7 +20,9 @@ class PostsController < ApplicationController
   
   def top    
     if signed_in?
-      @post  = current_user.posts.build         
+      @post  = current_user.posts.build  
+      
+      # => this query doesnt appear to work in postgres  
       post_ids = ActiveRecord::Base.connection.execute("SELECT target_id FROM rs_reputations WHERE target_type = 'Post' ORDER BY value DESC")
       post_ids = post_ids.map { |item| item = item[0] }
       @feed_items = []
@@ -63,7 +65,7 @@ class PostsController < ApplicationController
   def vote
     value = params[:type] == "up" ? 1 : -1
     @post = Post.find(params[:id])
-    @post.add_or_update_evaluation(:votes, value, current_user)
+    @post.add_or_update_evaluation(:post_votes, value, current_user)
     flash[:success] = "Thank you for voting!"
     redirect_to :back
   end

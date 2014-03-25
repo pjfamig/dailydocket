@@ -20,16 +20,8 @@
     <small>Posted <%= time_ago_in_words(feed_item.created_at) %> ago.</small>
   </span>
 
-<!--
-  <% if feed_item.tags.any? %>
-	<%= raw feed_item.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "btn btn-success btn-xs" }.join(' ') %>
-  <% end %>
-
-<span class="label label-success">Patent</span> <span class="label label-primary">Copyright</span>
--->
-
 <br>
-<%= pluralize feed_item.reputation_for(:votes).to_i, "vote" %>
+<%= pluralize feed_item.reputation_for(:post_votes).to_i, "vote" %>
 | <%= link_to "up", vote_post_path(feed_item, type: "up"), method: "post" %>
 | <%= link_to "down", vote_post_path(feed_item, type: "down"), method: "post" %>
 | <%= link_to "Comments", feed_item %>
@@ -46,9 +38,10 @@
 		</div>
 		
 		<div class="col-xs-3">
-	
-		<span class="label label-warning">Patent</span>
-		<span class="label label-success">Patent</span> <span class="label label-primary">Copyright</span>
+		<% if feed_item.tags.any? %>
+			<%= raw feed_item.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "label label-success " + t.to_s }.join(' ') %>
+		<% end %>
+		
 		</div>
 	</div>
 </li>

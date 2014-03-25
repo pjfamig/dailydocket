@@ -24,10 +24,10 @@ class User < ActiveRecord::Base
       { :reputation => :commenting_skill }]
       
   has_reputation :posting_skill,
-      :source => { :reputation => :votes, :of => :posts }
+      :source => { :reputation => :post_votes, :of => :posts }
   
   has_reputation :commenting_skill,
-      :source => { :reputation => :votes, :of => :comments }
+      :source => { :reputation => :comment_votes, :of => :comments }
           
   before_save { self.email = email.downcase }
   before_create :create_remember_token
