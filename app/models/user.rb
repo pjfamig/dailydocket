@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   
   has_reputation :karma,
     :source => [
-      { :reputation => :posting_skill, :weight => 0.8},
+      { :reputation => :posting_skill, :weight => 0.8 },
       { :reputation => :commenting_skill }]
       
   has_reputation :posting_skill,

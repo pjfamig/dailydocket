@@ -5,10 +5,10 @@
 
 <h3>Top News</h3>
 <ul class="list-unstyled posts">
-    <%= render @posts %>
+    <%= render @feed_items %>
 </ul>
 
-<%= will_paginate %>
+<%= will_paginate @feed_items %>
 
 
 	</div>

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :admin_user,     only: [:create, :destroy]
+  require 'will_paginate/array'
   
   def index    
     if signed_in?
@@ -11,19 +12,29 @@ class PostsController < ApplicationController
       else
         @feed_items = Post.paginate(page: params[:page], :per_page => 10)
       end
+      
+    else
+      # add redirect for main index path
     end
   end
   
-  def top
-    #   add some more logic here: retrieve recent posts with many views and/or comments
-    #   1000 views, 10 comments = 
-    #   100 views, 10 comments = 
-    
+  def top    
     if signed_in?
       @post  = current_user.posts.build         
+      
+      post_ids = ActiveRecord::Base.connection.execute("SELECT target_id FROM rs_reputations WHERE target_type = 'Post' ORDER BY value DESC")
+      post_ids = post_ids.map { |item| item = item[0] }
+      @feed_items = []
+      post_ids.each { |id| @feed_items << Post.find(id) }
+      @feed_items = @feed_items.paginate(page: params[:page], :per_page => 10)
+      
+            
+      # @feed_items = Post.find_with_reputation(:votes, :all, order: 'votes desc').paginate(page: params[:page], :per_page => 10)
+      render 'posts/index'   
+    else
+      flash[:warning] = "Please sign in."
+      redirect_to signin_path
     end
-    @feed_items = Post.paginate(page: params[:page], :per_page => 10)
-    render 'posts/index'   
   end
   
   def create
@@ -52,6 +63,14 @@ class PostsController < ApplicationController
                                     # here we use posts
   end
   
+
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @post = Post.find(params[:id])
+    @post.add_or_update_evaluation(:votes, value, current_user)
+    flash[:success] = "Thank you for voting!"
+    redirect_to :back
+  end
 
   
   private

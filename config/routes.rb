@@ -2,6 +2,7 @@ Dailydocket::Application.routes.draw do
   resources :users  
   
   resources :posts do
+    member { post :vote }
     resources :comments, only: [:new, :create, :destroy]
   end
     

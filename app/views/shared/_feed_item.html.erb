@@ -29,7 +29,10 @@
 -->
 
 <br>
- <%= link_to "Comments", feed_item %>
+<%= pluralize feed_item.reputation_for(:votes).to_i, "vote" %>
+| <%= link_to "up", vote_post_path(feed_item, type: "up"), method: "post" %>
+| <%= link_to "down", vote_post_path(feed_item, type: "down"), method: "post" %>
+| <%= link_to "Comments", feed_item %>
 
 
 

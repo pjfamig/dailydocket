@@ -21,5 +21,8 @@ class Comment < ActiveRecord::Base
 
   has_ancestry 
   
-  has_reputation :votes, :source => :user
+  has_reputation :votes, 
+    :source => :user,
+    :source_of => { :reputation => :commenting_skill, :of => :user }
+    
 end

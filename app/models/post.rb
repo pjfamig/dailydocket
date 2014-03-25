@@ -23,6 +23,8 @@ class Post < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
   
-  has_reputation :votes, :source => :user
+  has_reputation :votes, 
+    :source => :user,
+    :source_of => { :reputation => :posting_skill, :of => :user }
   
 end
