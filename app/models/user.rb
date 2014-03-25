@@ -17,6 +17,18 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  
+  has_reputation :karma,
+    :source => [
+      { :reputation => :posting_skill, :weight => 0.8},
+      { :reputation => :commenting_skill }]
+      
+  has_reputation :posting_skill,
+      :source => { :reputation => :votes, :of => :posts }
+  
+  has_reputation :commenting_skill,
+      :source => { :reputation => :votes, :of => :comments }
+          
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   

@@ -18,6 +18,11 @@ class Post < ActiveRecord::Base
   validates :user_id, presence: true
   validates :url, presence: true, :url => true
   validates :headline, presence: true
+  
   acts_as_taggable
+  
   mount_uploader :image, ImageUploader
+  
+  has_reputation :votes, :source => :user
+  
 end
