@@ -30,6 +30,14 @@ class CommentsController < ApplicationController
     flash[:success] = "Comment deleted."
     redirect_to post_path(@post)
   end
+  
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @comment = Comment.find(params[:id])
+    @comment.add_or_update_evaluation(:comment_votes, value, current_user)
+    flash[:success] = "Thank you for voting!"
+    redirect_to :back
+  end
 
   private
 

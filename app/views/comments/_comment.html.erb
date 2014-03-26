@@ -10,6 +10,9 @@
   <span class="content"><%= comment.content %></span>
 
 
-<%= link_to "Reply", new_post_comment_path(comment.post_id, :parent_id => comment), id: "reply-to-post-" + comment.id.to_s, remote: true %>
+<%= pluralize comment.reputation_for(:comment_votes).to_i, "vote" %>
+| <%= link_to "up", vote_post_comment_path(comment.post_id, comment, type: "up"), method: "post" %>
+| <%= link_to "down", vote_post_comment_path(comment.post_id, comment, type: "down"), method: "post" %>
+| <%= link_to "Reply", new_post_comment_path(comment.post_id, :parent_id => comment), id: "reply-to-post-" + comment.id.to_s, remote: true %>
 </li>
 

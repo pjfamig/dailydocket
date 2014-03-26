@@ -1,23 +1,25 @@
-<li>
+<li id="<%= post.id %>">
 	<span class="headline">
-	 <h1>
-	 <% if post.image_url %>
-	  <%= image_tag post.image_url(:thumb).to_s %>
-     <% end %>
-	 
+	 <h1>	 
 	 <%= link_to post.headline, post.url %>
 	 </h1>
 	</span>
-  
-  <% if post.tags.any? %>
-	<%= raw post.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "btn btn-success btn-xs" }.join(' ') %>
-  <% end %>
 
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %> ago.
+	<% if post.tags.any? %>
+		<%= raw post.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "label label-success " + t.to_s }.join(' ') %>
+	<% end %>
+
+	<span class="timestamp">
+    <small>Posted <%= time_ago_in_words(post.created_at) %> ago.</small>
   </span>
 
-<%= link_to "comments", post %>
+	<br>
+	<%= pluralize post.reputation_for(:post_votes).to_i, "vote" %>
+	| <%= link_to "up", vote_post_path(post, type: "up"), method: "post" %>
+	| <%= link_to "down", vote_post_path(post, type: "down"), method: "post" %>
+	| <%= link_to "Comments", post %>
+
+
 
   <% if signed_in? && current_user.admin? %>
 | 
