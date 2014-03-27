@@ -3,6 +3,6 @@ class UserMailer < ActionMailer::Base
 
   def password_reset(user)
     @user = user
-    mail :to => user.email, :subject => "Reset your password for DailyDocket.org"
+    mail :to => user.email, :subject => "DailyDocket: Reset your password"
   end
 end
