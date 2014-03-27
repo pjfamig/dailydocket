@@ -1,5 +1,4 @@
 Dailydocket::Application.routes.draw do
-  get "password_resets/new"
   resources :users  
   resources :password_resets
   
