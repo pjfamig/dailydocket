@@ -24,4 +24,4 @@ doc/
 .DS_Store
 .idea
 .secret
-/config/app_environment_variables.rb
+app_environment_variables.rb
