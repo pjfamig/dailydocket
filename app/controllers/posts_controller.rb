@@ -21,11 +21,15 @@ class PostsController < ApplicationController
   def top    
     if signed_in?
       @post  = current_user.posts.build  
-      post_ids = ActiveRecord::Base.connection.execute("SELECT target_id FROM rs_reputations WHERE target_type = 'Post' ORDER BY value DESC")
-      post_ids = post_ids.map { |item| item = item[0] }
-      @feed_items = []
-      post_ids.each { |id| @feed_items << Post.find(id) }
-      @feed_items = @feed_items.paginate(page: params[:page], :per_page => 10)      
+      
+      #post_ids = ActiveRecord::Base.connection.execute("SELECT target_id FROM rs_reputations WHERE target_type = 'Post' ORDER BY value DESC")
+      #post_ids = post_ids.map { |item| item = item[0] }
+      #@feed_items = []
+      #post_ids.each { |id| @feed_items << Post.find(id) }
+      #@feed_items = @feed_items.paginate(page: params[:page], :per_page => 10)      
+      
+      @feed_items = Post.page(params[:page]).popular
+      
       render 'posts/index'   
     else
       flash[:warning] = "Please sign in."

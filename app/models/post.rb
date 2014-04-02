@@ -26,4 +26,8 @@ class Post < ActiveRecord::Base
   has_reputation :post_votes, 
     :source => :user,
     :source_of => { :reputation => :posting_skill, :of => :user }
+    
+  def self.popular
+    reorder('post_votes desc').find_with_reputation(:post_votes, :all)
+  end  
 end
