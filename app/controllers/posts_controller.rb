@@ -28,7 +28,7 @@ class PostsController < ApplicationController
       #post_ids.each { |id| @feed_items << Post.find(id) }
       #@feed_items = @feed_items.paginate(page: params[:page], :per_page => 10)      
       
-      @feed_items = Post.page(params[:page]).popular
+      @feed_items = Post.paginate(page: params[:page], :per_page => 10).popular
       
       render 'posts/index'   
     else
