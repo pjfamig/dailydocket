@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     if signed_in?
       @post  = current_user.posts.build  
       
-      # => this query doesnt appear to work in postgres  , DSC?
+      # => this query doesnt work in postgres, DSC?
       post_ids = ActiveRecord::Base.connection.execute("SELECT target_id FROM rs_reputations WHERE target_type = 'Post' ORDER BY value DESC")
       post_ids = post_ids.map { |item| item = item[0] }
       @feed_items = []
