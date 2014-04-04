@@ -3,12 +3,13 @@ class AdminController < ApplicationController
   before_action :admin_user, only: :index
 
   def index
-    @feed_items = Post.paginate(page: params[:page], :per_page => 10)
+    @feed_items = Post.where("active = ?", true).paginate(page: params[:page], :per_page => 10)
     @post  = current_user.posts.build                                                      
   end
   
   def live_posts
-    @feed_items = Post.paginate(page: params[:page], :per_page => 10)
+    # not hitting this action yet
+    @feed_items = Post.where("active = ?", true).paginate(page: params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
@@ -16,7 +17,7 @@ class AdminController < ApplicationController
   end
   
   def pending_posts
-    @data = "Pending Posts (Ajax)"
+    @feed_items = Post.where("active = ?", false).paginate(page: params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
