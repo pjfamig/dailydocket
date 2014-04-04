@@ -3,10 +3,15 @@
 <div class="row">
 	<div class="col-md-12">
 
+<h1>Admin Panel</h1>
 <div id="admin_tabs">
 <ul class="nav nav-tabs">
   <li class="active">
-	<a href="#active_posts" data-toggle="tab" class="active">Active Posts</a>
+	<a href="#new_post" data-toggle="tab" class="active">New Post</a>
+  </li>
+  <li>
+	<%= link_to "Active Posts", admin_active_posts_path(:format => :js), :remote => true,
+					'data-toggle' => 'tab', 'data-target' => '#active_posts' %>
   </li>
   <li>
 	<%= link_to "Pending Posts", admin_pending_posts_path(:format => :js), :remote => true,
@@ -28,8 +33,13 @@
 
 
 <div class="tab-content">
-  <div class="tab-pane active fade in" id="active_posts">
-  	<%= render 'shared/feed' %>
+  <div class="tab-pane active fade in" id="new_post">
+	<h3>New Post</h3>
+	<% if signed_in? && current_user.admin? %>		
+		<%= render 'shared/post_form' %>
+	<% end %>
+  </div>	
+  <div class="tab-pane fade in" id="active_posts">
   </div>
   <div class="tab-pane fade" id="pending_posts">
   </div>
@@ -41,21 +51,5 @@
   </div>
 <% end %>
 </div>
-
-
-<h3></h3>
-<ul class="list-unstyled posts">
-</ul>
-
-
-<h1>New Post</h1>
-
-<% if signed_in? && current_user.admin? %>		
-	<%= render 'shared/post_form' %>
-<br><br>
-<% end %>
-
-
-
 </div>
 </div>

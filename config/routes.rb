@@ -21,7 +21,7 @@ Dailydocket::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',   via: 'delete'
   get   'topics/:tag',to: 'posts#index',        as: :tag
   
-  get   'admin/live_posts' => 'admin#live_posts', :as => :admin_live_posts
+  get   'admin/active_posts' => 'admin#active_posts', :as => :admin_active_posts
   get   'admin/pending_posts' => 'admin#pending_posts', :as => :admin_pending_posts
   get   'admin/recent_comments' => 'admin#recent_comments', :as => :admin_recent_comments
   get   'admin/users' => 'admin#users', :as => :admin_users

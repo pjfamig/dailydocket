@@ -3,12 +3,10 @@ class AdminController < ApplicationController
   before_action :admin_user, only: :index
 
   def index
-    @feed_items = Post.where("active = ?", true).paginate(page: params[:page], :per_page => 10)
     @post  = current_user.posts.build                                                      
   end
   
-  def live_posts
-    # not hitting this action yet
+  def active_posts
     @feed_items = Post.where("active = ?", true).paginate(page: params[:page], :per_page => 10)
     respond_to do |format|
       format.html
