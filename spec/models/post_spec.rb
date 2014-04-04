@@ -13,6 +13,8 @@ describe Post do
   it { should respond_to(:user) }
   it { should respond_to(:comments) }
   it { should respond_to(:image) }
+  it { should respond_to(:active) }
+  it { should_not be_active }
   
   
   its(:user) { should eq user }
@@ -32,5 +34,14 @@ describe Post do
   describe "with blank url" do
     before { @post.url = " " }
     it { should_not be_valid }
+  end
+  
+  describe "with active attribute set to 'true'" do
+    before do
+      @post.save!
+      @post.toggle!(:active)
+    end
+
+    it { should be_active }
   end
 end

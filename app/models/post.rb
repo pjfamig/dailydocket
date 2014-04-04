@@ -30,4 +30,13 @@ class Post < ActiveRecord::Base
   def self.popular
     reorder('post_votes desc').find_with_reputation(:post_votes, :all)
   end  
+  
+  def domain
+    if self.url.blank?
+      nil
+    else
+      pu = URI.parse(self.url)
+      pu.host.gsub(/^www\d*\./, "")
+    end
+  end
 end

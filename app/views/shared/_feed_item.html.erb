@@ -14,7 +14,7 @@
 		<div class="col-xs-9">
 
 	 <h1>
-	  <%= link_to feed_item.headline, feed_item.url %> <small><i>example.com</i></small>
+	  <%= link_to feed_item.headline, feed_item.url %> <small><i><%= feed_item.domain %></i></small>
 	 </h1>
 	<span class="timestamp">
     <small>Posted <%= time_ago_in_words(feed_item.created_at) %> ago.</small>
@@ -29,7 +29,7 @@
 
 
 
-<% if current_user.admin? %>
+<% if signed_in? && current_user.admin? %>
     | 
     <%= link_to "delete", feed_item, method: :delete,
                                      data: { confirm: "You sure?" },

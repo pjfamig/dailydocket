@@ -4,17 +4,14 @@ class PostsController < ApplicationController
   require 'will_paginate/array'
   
   def index    
-    if signed_in?
-      @post  = current_user.posts.build                                                      
-      if params[:tag]
-        @feed_items = Post.tagged_with(params[:tag]).paginate(page: params[:page], 
+    # => If render a new post form, must instantiate @post
+    # => @post  = current_user.posts.build                
+                                          
+    if params[:tag]
+      @feed_items = Post.tagged_with(params[:tag]).paginate(page: params[:page], 
                                                               :per_page => 20)
-      else
-        @feed_items = Post.paginate(page: params[:page], :per_page => 10)
-      end
-      
     else
-      # add redirect for main index path
+      @feed_items = Post.paginate(page: params[:page], :per_page => 10)
     end
   end
   
@@ -39,6 +36,11 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(post_params)
+    
+    if signed_in? && current_user.admin?
+      @post.active = true
+    end
+    
     if @post.save
       flash[:success] = "Post created!"
       redirect_to root_url
