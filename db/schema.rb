@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404041230) do
+ActiveRecord::Schema.define(version: 20140404051125) do
 
   create_table "comments", force: true do |t|
     t.string   "content"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20140404041230) do
     t.boolean  "superadmin",             default: false
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -9,6 +9,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  image      :string(255)
+#  active     :boolean          default(FALSE)
 #
 
 class Post < ActiveRecord::Base

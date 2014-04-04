@@ -20,6 +20,7 @@ describe User do
   it { should respond_to(:feed) }
   it { should respond_to(:comments) }
   it { should respond_to(:image) }
+  it { should respond_to(:username) }
   
   it { should be_valid }
   it { should_not be_admin }
