@@ -68,7 +68,11 @@
           <% else %>
             <li class="<%= 'active' if current_page?(signin_path) %>"><%= link_to "Sign in", signin_path %></li>
 			<li class="<%= 'active' if current_page?(signup_path) %>"><%= link_to 'Sign up', signup_path %></li>
+
           <% end %>
+			<!--<li>
+				<button class="btn btn-primary btn-sm submit" data-toggle="modal" data-target="#myModal">Submit</button>
+			</li>-->
 		</ul>
 	</div>
    </div> <!-- /.navbar-collapse -->
