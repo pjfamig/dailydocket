@@ -5,6 +5,9 @@
 	<!-- render news feed w/ delete links -->
 	<%= render 'shared/feed' %>	
 <% else %>
+	<% if params[:tag] %>
+		<h1><%= params[:tag].titleize %></h1>
+	<% end %>
 	<!-- render news feed with no user options or delete links -->
 	<%= render 'shared/feed' %>
 <% end %>

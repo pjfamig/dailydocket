@@ -69,6 +69,8 @@ class PostsController < ApplicationController
   def vote
     value = params[:type] == "up" ? 1 : -1
     @post = Post.find(params[:id])
+    
+    # => DOES NOT WORK IF NOT LOGGED IN!
     @post.add_or_update_evaluation(:post_votes, value, current_user)
     flash[:success] = "Thank you for voting!"
     redirect_to :back
