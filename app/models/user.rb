@@ -33,14 +33,27 @@ class User < ActiveRecord::Base
       :source => { :reputation => :comment_votes, :of => :comments }
           
   before_save { self.email = email.downcase }
+  before_save { self.username = username.downcase }
+  
   before_create :create_remember_token
   
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, length: { maximum: 50 }
+
+  validates :username, presence: true, 
+                      length: { maximum: 20 },
+                      uniqueness: { case_sensitive: false }
+                        
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  
   validates :email, presence:   true, 
                     format:     { with: VALID_EMAIL_REGEX }, 
                     uniqueness: { case_sensitive: false }
-  has_secure_password
+  
+  # Custom validations to negate password_confirmation                  
+  has_secure_password validations: false
+  validates :password, length: { minimum: 6 }, allow_blank: true
+  validates :password, presence: true, on: :create
+  
   validates :password, length: { minimum: 6 }
   mount_uploader :image, ImageUploader
   

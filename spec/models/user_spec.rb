@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe User do
 
-  before { @user = User.new(name: "Example User", email: "user@example.com", 
+  before { @user = User.new(username: "user1", name: "Example User", email: "user@example.com", 
                             password: "foobar", password_confirmation: "foobar") }
+                            
+  before { @user2 = User.new(username: "pjfamig", name: "Second Example User", email: "user2@example.com",
+                            password: "foobar", password_confirmation: "foobar") }                          
 
   subject { @user }
 
@@ -46,7 +49,7 @@ describe User do
 
   describe "when name is not present" do
     before { @user.name = " " }
-    it { should_not be_valid }
+    it { should be_valid }
   end
 
   describe "when name is too long" do
@@ -87,6 +90,22 @@ describe User do
       user_with_same_email.save
     end
 
+    it { should_not be_valid }
+  end
+  
+  describe "when username is already taken" do
+    before do
+      user_with_same_username = @user2.dup
+      user_with_same_username.username = @user2.username.upcase
+      user_with_same_username.save
+    end
+    it "should be invalid" do
+      expect(@user2).not_to be_valid
+    end
+  end
+
+  describe "when name is too long" do
+    before { @user.username = "a" * 21 }
     it { should_not be_valid }
   end
   
