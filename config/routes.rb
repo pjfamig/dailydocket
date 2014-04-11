@@ -19,7 +19,7 @@ Dailydocket::Application.routes.draw do
   match '/signup',  to: 'users#new',          via: 'get'
   match '/signin',  to: 'sessions#new',       via: 'get'
   match '/signout', to: 'sessions#destroy',   via: 'delete'
-  get   'topics/:tag',to: 'posts#index',        as: :tag
+  get   '/:tag',to: 'posts#index',        as: :tag
   
   get   'admin/active_posts' => 'admin#active_posts', :as => :admin_active_posts
   get   'admin/pending_posts' => 'admin#pending_posts', :as => :admin_pending_posts
