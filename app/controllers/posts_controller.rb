@@ -44,6 +44,8 @@ class PostsController < ApplicationController
       @post.active = true
     end
     
+    # => add some client-side validations
+    
     if @post.save
       flash[:success] = "Post created!"
       redirect_to root_url
@@ -73,7 +75,7 @@ class PostsController < ApplicationController
     value = params[:type] == "up" ? 1 : -1
     @post = Post.find(params[:id])
     
-    # => DOES NOT WORK IF NOT LOGGED IN!
+    # => add conditional if logged in
     @post.add_or_update_evaluation(:post_votes, value, current_user)
     flash[:success] = "Thank you for voting!"
     redirect_to :back
