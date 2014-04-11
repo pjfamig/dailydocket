@@ -8,4 +8,7 @@ class PasswordResetsController < ApplicationController
     flash[:success] = "Email sent with password reset instructions."
     redirect_to root_url 
   end
+  
+  def edit
+  end
 end

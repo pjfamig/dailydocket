@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   
   def index    
     # => If render a new post form, must instantiate @post
-    # => @post  = current_user.posts.build                
+    # => @post  = current_user.posts.build      
+    # => necessary for modal?          
                                           
     if params[:tag]
       @feed_items = Post.tagged_with(params[:tag]).paginate(page: params[:page], 
@@ -36,6 +37,8 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(post_params)
+    
+    # => inactive on insert
     
     if signed_in? && current_user.admin?
       @post.active = true
