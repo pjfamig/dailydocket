@@ -1,7 +1,12 @@
 <h3>Active Posts</h3>
 
 <ul class="list-unstyled posts">
+	<div class="col-xs-8">
   <%= render 'shared/feed' %>
+	</div>
+	<div class="col-xs-4 col-xs-offset-8">
+		<!-- approve/edit/deny buttons -->
+	</div>
 </ul>
 
 <%= will_paginate @feed_items %>
