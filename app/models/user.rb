@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   
   validates :name, length: { maximum: 50 }
 
-  VALID_USERNAME_REGEX = /\A[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*\z/
+  VALID_USERNAME_REGEX = /\A[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*\z/
 
   validates :username, presence: true, 
                        length:        { in: 3..20 },
