@@ -1,9 +1,9 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "pjfamig@gmail.com"
 
   def password_reset(user)
     @user = user
-    mail :to => user.email, :subject => "DailyDocket: Reset your password"
+    mail :to => user.email, :subject => "DailyDocket: Password Reset"
   end
   
   # => method for post activated
