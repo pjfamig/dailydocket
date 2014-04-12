@@ -46,13 +46,13 @@ describe "Authentication" do
     describe "with valid information as Admin" do
       let(:admin) { FactoryGirl.create(:admin) }
       before { sign_in admin }
-      it { should have_link('Users',       href: users_path) }
+      it { should have_link('Admin',       href: admin_index_path) }
     end
     
     describe "with valid information as SUPER-admin" do
       let(:superadmin) { FactoryGirl.create(:superadmin) }
       before { sign_in superadmin }
-      it { should have_link('Users',       href: users_path) }
+      it { should have_link('Admin',       href: admin_index_path) }
     end
   end
 

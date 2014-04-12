@@ -16,12 +16,13 @@ describe 'Admin pages' do
     it { should have_content('New Post') }
     it { should have_content('Active Posts') }
     it { should have_content('Pending Posts') }
+    it { should have_content('Recent Comments') }
     it { should have_title('Admin Section') }
     
-    describe "recent posts" do
-      it { should have_content(post1.headline) }
-      it { should have_content(post2.headline) }
-    end
+    # describe "recent posts" do
+    #   it { should have_content(post1.headline) }
+    #   it { should have_content(post2.headline) }
+    # end
   end
   
   
