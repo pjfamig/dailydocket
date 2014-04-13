@@ -383,9 +383,20 @@ input {
 	width: 20px !important;
 }
 
+#post-votes {
+	margin: auto 0;
+	float: none;
+}
+
 .arrows {
 	color: #666;
 }
 
-.comments-links {
+span.glyphicon-chevron-up {
+	font-size: 1.2em;
+}
+
+span.glyphicon-chevron-down {
+	font-size: 1.2em;
+	margin-left: -1px;	
 }

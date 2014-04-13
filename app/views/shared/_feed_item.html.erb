@@ -1,24 +1,14 @@
 <li id="<%= feed_item.id %>">
 	<div class="row">
 		
-		<!--
-	  <% if feed_item.image_url %>
-		<div class="col-sm-1">
-	   <%= image_tag feed_item.image_url(:thumb).to_s %>
-		</div>	
-		<div class="col-sm-11" style="padding-left: 34px;">
-	  <% else %>
-		<div class="col-xs-12">
-	  <% end %>
-		-->
-
 	<div class="col-xs-1 vote-buttons">	
+
 		<%= link_to vote_post_path(feed_item, type: "up"), method: "post", class: "arrows" do %>
 			<span class="glyphicon glyphicon-chevron-up"></span>
 		<% end %>
 		
-			<strong><%= feed_item.reputation_for(:post_votes).to_i %></strong><br>
-			
+		<div id="post-votes"><strong><%= feed_item.reputation_for(:post_votes).to_i %></strong></div>
+				
 		<%= link_to vote_post_path(feed_item, type: "down"), method: "post", class: "arrows" do %>
 			<span class="glyphicon glyphicon-chevron-down"></span>
 		<% end %>	
