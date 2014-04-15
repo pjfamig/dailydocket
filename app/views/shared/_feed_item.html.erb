@@ -1,20 +1,23 @@
 <li id="<%= feed_item.id %>">
-	<div class="row">
+	<div class="row feed-item">
+			
+	<div class="col-xs-9">
 		
-	<div class="col-xs-1 vote-buttons">	
+		<div class="vote-buttons">	
 
-		<%= link_to vote_post_path(feed_item, type: "up"), method: "post", class: "arrows" do %>
-			<span class="glyphicon glyphicon-chevron-up"></span>
-		<% end %>
+			<%= link_to vote_post_path(feed_item, type: "up"), method: "post", class: "arrows" do %>
+				<span class="glyphicon glyphicon-chevron-up"></span>
+			<% end %>
+
+			<strong><%= feed_item.reputation_for(:post_votes).to_i %></strong>
+
+
+			<%= link_to vote_post_path(feed_item, type: "down"), method: "post", class: "arrows" do %>
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			<% end %>	
+		</div>	
 		
-		<div id="post-votes"><strong><%= feed_item.reputation_for(:post_votes).to_i %></strong></div>
-				
-		<%= link_to vote_post_path(feed_item, type: "down"), method: "post", class: "arrows" do %>
-			<span class="glyphicon glyphicon-chevron-down"></span>
-		<% end %>	
-	</div>
-	
-	<div class="col-xs-8">	
+		
 	 <h1><%= link_to feed_item.headline, feed_item.url %> <small><i><%= feed_item.domain %></i></small></h1>
 	<span class="timestamp">
     <small>Posted <%= time_ago_in_words(feed_item.created_at) %> ago.</small>
@@ -26,6 +29,9 @@
 | <%= link_to "up", vote_post_path(feed_item, type: "up"), method: "post" %>
 | <%= link_to "down", vote_post_path(feed_item, type: "down"), method: "post" %>
 -->
+
+<a href="">
+<span class="glyphicon glyphicon-comment"></span></a>
 <%= link_to feed_item.comments.count.to_s + " comments", feed_item, class: "comments-links" %>
 
 
@@ -37,6 +43,7 @@
                                      title: feed_item.headline %>
 <% end %>
 
+	
 		</div>
 		
 		<div class="col-xs-3">

@@ -139,7 +139,7 @@ p {
 	min-height: 40px !important;
 	//background-color: #4679BD // #4072b4;
 	background-color: #333;
-    border-color: #CCC;
+    border-color: #333;
 }
 
 .submit {
@@ -174,7 +174,7 @@ p {
 	
 	.main {
 		padding-left: 0px;
-		margin-left: 270px;
+		margin-left: 260px;
 	}
 	
 	h4 {
@@ -283,6 +283,10 @@ input {
   }
 }
 
+.col-xs-3 {
+	padding-right: 0px;
+}
+
 .headline {
   display: block;
 }
@@ -380,12 +384,14 @@ input {
 
 
 .vote-buttons {
-	width: 20px !important;
+	width: 18px !important;
+	float: left;
+	margin-right: 14px;
+	text-align: center;
 }
 
-#post-votes {
-	margin: auto 0;
-	float: none;
+.feed-item {
+	margin-right: 0px;
 }
 
 .arrows {
