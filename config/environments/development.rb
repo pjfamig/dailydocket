@@ -36,12 +36,13 @@ Dailydocket::Application.configure do
   # Rails.application.routes.default_url_options[:host] = 'localhost:3000'
     
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.sendgrid.net",
+    :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => "gmail.com",
-    :user_name            => ENV["SENDGRID_USERNAME"],
-    :password             => ENV["SENDGRID_PASSWORD"],
+    :user_name            => ENV["GMAIL_USERNAME"],
+    :password             => ENV["GMAIL_PASSWORD"],
     :authentication       => :plain,
-    :enable_starttls_auto => true
+    :enable_starttls_auto => true,
+    :openssl_verify_mode => 'none'
   }
 end
