@@ -3,20 +3,23 @@
 			
 	<div class="col-xs-9">
 		
-		<div class="vote-buttons">	
+		<div class="vote-buttons" id="vote-buttons">	
 
-			<%= link_to vote_post_path(feed_item, type: "up"), method: "post", class: "arrows" do %>
-				<span class="glyphicon glyphicon-chevron-up"></span>
+			<%= link_to vote_post_path(feed_item, type: "up"), method: "post", class: "arrows", remote: true do %>
+				<% if current_user && current_user.voted_for?(feed_item) %>
+					<span class="glyphicon glyphicon-chevron-up voted_for"></span>
+				<% else %>
+					<span class="glyphicon glyphicon-chevron-up"></span>
+				<% end %>
 			<% end %>
 
-			<strong><%= feed_item.reputation_for(:post_votes).to_i %></strong>
+			<strong id="reputation-<%= feed_item.id %>"><%= feed_item.reputation_for(:post_votes).to_i %></strong>
 
 
-			<%= link_to vote_post_path(feed_item, type: "down"), method: "post", class: "arrows" do %>
+			<%= link_to vote_post_path(feed_item, type: "down"), method: "post", class: "arrows", remote: true do %>
 				<span class="glyphicon glyphicon-chevron-down"></span>
 			<% end %>	
-		</div>	
-		
+		</div>		
 		
 	 <h1><%= link_to feed_item.headline, feed_item.url %> <small><i><%= feed_item.domain %></i></small></h1>
 	<span class="timestamp">

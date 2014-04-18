@@ -20,6 +20,7 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :evaluations, class_name: "rs_evaluations", as: :source
   
   has_reputation :karma,
     :source => [
@@ -76,10 +77,15 @@ class User < ActiveRecord::Base
   end
   
   def feed
-    # This is preliminary. See "Following users" for the full implementation.
+    # This is preliminary...
     Post.where("user_id = ?", id)
   end
   
+  def voted_for?(post)
+    evaluations.where(target_type: post.class, target_id: post.id).present?
+  end
+  
+
   private
   
     def create_remember_token

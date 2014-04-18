@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy]
+  before_action :signed_in_user, only: [:create, :destroy, :vote]
   before_action :admin_user,     only: [:create, :destroy]
   require 'will_paginate/array'
   
@@ -17,14 +17,9 @@ class PostsController < ApplicationController
   end
   
   def top    
-    if signed_in?
-      @post  = current_user.posts.build        
+      # => @post  = current_user.posts.build        
       @feed_items = Post.paginate(page: params[:page], :per_page => 10).popular
       render 'posts/index'   
-    else
-      flash[:warning] = "Please sign in."
-      redirect_to signin_path
-    end
   end
   
   def create
@@ -69,8 +64,11 @@ class PostsController < ApplicationController
     
     # => add conditional if logged in
     @post.add_or_update_evaluation(:post_votes, value, current_user)
-    flash[:success] = "Thank you for voting!"
-    redirect_to :back
+    # => flash[:success] = "Thank you for voting!"
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
 
   

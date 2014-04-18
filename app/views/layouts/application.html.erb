@@ -35,13 +35,13 @@
 			<div class="col-md-2 sidebar_2">
 				<h4><span class="glyphicon glyphicon-star">&nbsp;</span>
 				<% if current_page?(root_path) %>
-					Top Stories
+					News
 				<% else %>
-					<%= link_to "Top Stories", root_path %>
+					<%= link_to "News", root_path %>
 				<% end %>
 				</h4>
 				
-				<h4><span class="glyphicon glyphicon-user">&nbsp;</span>
+				<h4><span class="glyphicon glyphicon-comment">&nbsp;</span>
 				<% if current_page?(top_path) %>
 					Comments
 				<% else %>
@@ -51,9 +51,9 @@
 				
 				<h4><span class="glyphicon glyphicon-th-list">&nbsp;</span>
 				<% if current_page?(posts_path) %>
-					Recent Topics
+					Topics
 				<% else %>
-					<%= link_to "Recent Topics", posts_path %>
+					<%= link_to "Topics", posts_path %>
 				<% end %>
 				</h4>				
 				</h4>
