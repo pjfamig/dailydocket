@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
     # posts user has voted on
     if signed_in?
-      @voted_items = Post.evaluated_by(:post_votes, current_user, :value)
+      @voted_items = Post.evaluated_by(:post_votes, current_user)
     end
                                            
     if params[:tag]
