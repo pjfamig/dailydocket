@@ -21,10 +21,15 @@ class PostsController < ApplicationController
     end
   end
   
-  def top    
-      # => @post  = current_user.posts.build        
-      @feed_items = Post.paginate(page: params[:page], :per_page => 10).popular
-      render 'posts/index'   
+  def top   
+    # posts user has voted on
+    if signed_in?
+      @voted_items = Post.evaluated_by(:post_votes, current_user)
+    end 
+      
+    # => @post  = current_user.posts.build        
+    @feed_items = Post.paginate(page: params[:page], :per_page => 10).popular
+    render 'posts/index'   
   end
   
   def create
