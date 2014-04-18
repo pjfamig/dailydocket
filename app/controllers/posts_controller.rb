@@ -7,7 +7,12 @@ class PostsController < ApplicationController
     # => If render a new post form, must instantiate @post
     # => @post  = current_user.posts.build      
     # => necessary for modal?          
-                                          
+
+    # posts user has voted on
+    if signed_in?
+      @voted_items = Post.evaluated_by(:post_votes, current_user, :value)
+    end
+                                           
     if params[:tag]
       @feed_items = Post.tagged_with(params[:tag]).paginate(page: params[:page], 
                                                               :per_page => 20)
@@ -62,8 +67,15 @@ class PostsController < ApplicationController
     value = params[:type] == "up" ? 1 : -1
     @post = Post.find(params[:id])
     
+    # => have_voted = @post.evaluators_for(:post_votes)
+    
+    # => unless have_voted.include?(current_user) # vote
+      @post.add_or_update_evaluation(:post_votes, value, current_user)
+    # => else                                      # unvote
+      # => @post.delete_evaluation(:post_votes, current_user)
+    # => end
+    
     # => add conditional if logged in
-    @post.add_or_update_evaluation(:post_votes, value, current_user)
     # => flash[:success] = "Thank you for voting!"
     respond_to do |format|
       format.html { redirect_to :back }

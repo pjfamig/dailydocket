@@ -40,4 +40,5 @@ class Post < ActiveRecord::Base
       pu.host.gsub(/^www\d*\./, "")
     end
   end
+  
 end
