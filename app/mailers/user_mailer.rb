@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "pjfamig@gmail.com"
+  default from: "info@dailydocket.org"
 
   def password_reset(user)
     @user = user
@@ -9,4 +9,5 @@ class UserMailer < ActionMailer::Base
   # => method for post activated
   
   # => method for notification
+  
 end
