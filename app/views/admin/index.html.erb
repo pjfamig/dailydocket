@@ -5,30 +5,29 @@
 
 <h1>Admin Panel</h1>
 <div id="admin_tabs">
-<ul class="nav nav-tabs">
-  <li class="active">
-	<a href="#new_post" data-toggle="tab" class="active">New Post</a>
-  </li>
-  <li>
-	<%= link_to "Active Posts", admin_active_posts_path(:format => :js), :remote => true,
+	<ul class="nav nav-tabs">
+  		<li class="active">
+			<a href="#new_post" data-toggle="tab" class="active">New Post</a>
+  		</li>
+  		<li>
+<%= link_to "Active Posts", admin_active_posts_path, :remote => true,
 					'data-toggle' => 'tab', 'data-target' => '#active_posts' %>
-  </li>
-  <li>
-	<%= link_to "Pending Posts", admin_pending_posts_path(:format => :js), :remote => true,
+  		</li>
+  		<li>
+<%= link_to "Pending Posts", admin_pending_posts_path, :remote => true,
 					'data-toggle' => 'tab', 'data-target' => '#pending_posts' %>
-  </li>
-  <li>
-	<%= link_to "Recent Comments", admin_recent_comments_path(:format => :js), :remote => true,
+  		</li>
+ 		<li>
+<%= link_to "Recent Comments", admin_recent_comments_path, :remote => true,
 					'data-toggle' => 'tab', 'data-target' => '#recent_comments'  %>
-  </li>
-
+  		</li>
 <% if current_user.superadmin? %>
-  <li>
-	<%= link_to "Users", admin_users_path(:format => :js), :remote => true,
+  		<li>
+			<%= link_to "Users", admin_users_path, :remote => true,
 					'data-toggle' => 'tab', 'data-target' => '#users'  %>
-  </li>
+  		</li>
 <% end 	%>
-</ul>
+	</ul>
 </div>
 
 

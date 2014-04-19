@@ -1,6 +1,9 @@
 <h3>Users</h3>
 
-<ul class="list-unstyled users">
-  <%= render @users %>
-</ul>
+<% if @users.any? %>
+  <ul class="list-unstyled users">
+    <%= render @users %>
+  </ul>
+  <%= will_paginate @users %>
+<% end %>
 

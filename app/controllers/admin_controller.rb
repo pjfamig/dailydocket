@@ -10,7 +10,7 @@ class AdminController < ApplicationController
   
   def active_posts
     @voted_items = Post.evaluated_by(:post_votes, current_user)    
-    @feed_items = Post.where("active = ?", true).all # => paginate(page: params[:page], :per_page => 10)
+    @feed_items = Post.where("active = ?", true).paginate(page: params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
@@ -19,7 +19,7 @@ class AdminController < ApplicationController
   
   def pending_posts
     @voted_items = Post.evaluated_by(:post_votes, current_user)
-    @feed_items = Post.where("active = ?", false).all # => paginate(page: params[:page], :per_page => 10)
+    @feed_items = Post.where("active = ?", false).paginate(page: params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
@@ -28,7 +28,7 @@ class AdminController < ApplicationController
   
   def recent_comments
     @voted_items = Post.evaluated_by(:post_votes, current_user)
-    @data = "Recent Comments (Ajax)"
+    @feed_items = Comment.paginate(page: params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
@@ -36,7 +36,7 @@ class AdminController < ApplicationController
   end
   
   def users
-    @users = User.all # => paginate(page: params[:page], :per_page => 20)
+    @users = User.paginate(page: params[:page], :per_page => 20)
     respond_to do |format|
       format.html
       format.js

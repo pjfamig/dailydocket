@@ -1,2 +1,1 @@
-$('#users').empty()
-$('#users').append("<%= escape_javascript render(:file => 'admin/users', :formats => [:html]) %>");
+$('#users').html("<%= escape_javascript render(:file => 'admin/users', :formats => [:html]) %>");
