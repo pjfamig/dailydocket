@@ -1,30 +1,74 @@
 <li id="<%= post.id %>">
-	<span class="headline">
-	 <h1>	 
-	 <%= link_to post.headline, post.url %>
-	 </h1>
-	</span>
+	<div class="row feed-item">
 
-	<% if post.tags.any? %>
-		<%= raw post.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "label label-success " + t.to_s }.join(' ') %>
-	<% end %>
+	  <div class="col-xs-9">
+	
+		<div class="vote-buttons" id="vote-buttons">	
 
+			<%= link_to vote_post_path(post, type: "up"), method: "post", class: "arrows", remote: true do %>
+				<% if current_user && @voted_items.include?(post) %>
+					<span class="glyphicon glyphicon-chevron-up voted_for"></span>
+				<% else %>
+					<span class="glyphicon glyphicon-chevron-up"></span>
+				<% end %>
+			<% end %>
+
+			<strong id="reputation-<%= post.id %>"><%= post.reputation_for(:post_votes).to_i %></strong>
+
+
+			<%= link_to vote_post_path(post, type: "down"), method: "post", class: "arrows", remote: true do %>
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			<% end %>	
+		</div>		
+		
+	 <h1><%= link_to post.headline, post.url %> <small><i><%= post.domain %></i></small></h1>
 	<span class="timestamp">
     <small>Posted <%= time_ago_in_words(post.created_at) %> ago.</small>
-  </span>
+   </span>
 
-	<br>
-	<%= pluralize post.reputation_for(:post_votes).to_i, "vote" %>
-	| <%= link_to "up", vote_post_path(post, type: "up"), method: "post" %>
-	| <%= link_to "down", vote_post_path(post, type: "down"), method: "post" %>
-	| <%= link_to "Comments", post %>
+<br>
+<!-- 
+<%= pluralize post.reputation_for(:post_votes).to_i, "vote" %>
+| <%= link_to "up", vote_post_path(post, type: "up"), method: "post" %>
+| <%= link_to "down", vote_post_path(post, type: "down"), method: "post" %>
+-->
+
+<a href="">
+<span class="glyphicon glyphicon-comment"></span></a>
+<%= link_to post.comments.count.to_s + " comments", post, class: "comments-links" %>
+
+<% if signed_in? && current_user.admin? && controller.controller_name == 'admin' %>
+	<% if !post.active? %>
+		<%= link_to activate_post_path(post), method: :put do %>
+			<button type="button" class="btn btn-success btn-xs" title="Activate Post!"><span class="glyphicon glyphicon-ok"></button>
+		<% end %>		
+	<% end %>
+	
+	<%= link_to edit_post_path(post) do %>
+		<button type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+	<% end %>
+
+	<%= link_to activate_post_path(post), method: :put do %>
+		<button type="button" class="btn btn-danger btn-xs" title="Deactivate Post"><span class="glyphicon glyphicon-remove"></span></button>
+	<% end %>
+	<% if current_user.superadmin? %>
+	|
+	  <%= link_to "delete", post, method: :delete,
+	                                     data: { confirm: "You sure?" },
+	                                     title: post.headline %>
+	  <% end %>
+<% end %>
 
 
-
-  <% if signed_in? && current_user.admin? %>
-| 
-  <%= link_to "delete", post, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: post.headline %>
-  <% end %>
+		</div>
+		
+		<div class="col-xs-3">
+		<% if post.tags.any? %>
+			<%= raw post.tag_list.map { |t| link_to t.titleize, tag_path(t), class: "label label-success " + t.to_s }.join(' ') %>
+		<% end %>
+		
+		</div>
+	</div>
 </li>
+
+

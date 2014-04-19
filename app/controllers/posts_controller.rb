@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy, :vote]
-  before_action :admin_user,     only: [:create, :destroy]
+  before_action :signed_in_user,  only: [:create, :activate, :vote, :edit, :update, :destroy]
+  before_action :admin_user,      only: [:create, :activate, :edit, :update]
+  before_action :superadmin_user, only: :destroy
+  
   require 'will_paginate/array'
   
   def index    
@@ -26,7 +28,6 @@ class PostsController < ApplicationController
     if signed_in?
       @voted_items = Post.evaluated_by(:post_votes, current_user)
     end 
-      
     # => @post  = current_user.posts.build        
     @feed_items = Post.paginate(page: params[:page], :per_page => 10).popular
     render 'posts/index'   
@@ -52,14 +53,10 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy
-    post_id = params[:id]
-    Post.find_by(id: params[:id]).destroy
-    flash[:success] = "Post #{post_id} deleted."
-    redirect_to root_url
-  end
-  
   def show
+    if signed_in?
+      @voted_items = Post.evaluated_by(:post_votes, current_user)
+    end
     @post = Post.find(params[:id])
     @comments = @post.comments.paginate(page: params[:page], :per_page => 20)
     @comment = @post.comments.build # if signed_in? => from tutorial, but
@@ -67,7 +64,6 @@ class PostsController < ApplicationController
                                     # here we use posts
   end
   
-
   def vote
     value = params[:type] == "up" ? 1 : -1
     @post = Post.find(params[:id])
@@ -79,7 +75,7 @@ class PostsController < ApplicationController
     # => else                                      # unvote
       # => @post.delete_evaluation(:post_votes, current_user)
     # => end
-    
+
     # => add conditional if logged in
     # => flash[:success] = "Thank you for voting!"
     respond_to do |format|
@@ -87,8 +83,40 @@ class PostsController < ApplicationController
       format.js
     end
   end
-
   
+  def edit
+    @post = Post.find(params[:id])
+  end
+  
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      flash[:success] = "Post updated."
+      redirect_to @post
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    post_id = params[:id]
+    Post.find_by(id: params[:id]).destroy
+    flash[:success] = "Post #{post_id} deleted."
+    redirect_to root_url
+  end
+    
+  def activate 
+    @post = Post.find(params[:id])
+    @post.toggle!(:active)
+    if @post.active?
+      flash[:success] = "Activated."
+    else
+      flash[:danger] = "Deactivated."
+    end
+    redirect_to @post
+  end
+
+
   private
 
     def post_params

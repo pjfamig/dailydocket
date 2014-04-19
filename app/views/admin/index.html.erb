@@ -34,7 +34,6 @@
 
 <div class="tab-content">
   <div class="tab-pane active fade in" id="new_post">
-	<h3>New Post</h3>
 	<% if signed_in? && current_user.admin? %>		
 		<%= render 'shared/post_form' %>
 	<% end %>

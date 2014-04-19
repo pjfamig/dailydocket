@@ -252,12 +252,10 @@ input {
   list-style: none;
   margin: 0px;
   li {
-    overflow: auto;
-    padding: 10px 0;
-    border-top: 1px solid #EEE;
-    &:last-child {
-      border-bottom: 1px solid #EEE;
-    }
+	padding: 22px 0;
+	&:not(:first-child) {
+      border-top: 1px solid #e8e8e8;
+	}
   }
 }
 
@@ -399,7 +397,7 @@ input {
 }
 
 .voted_for {
-	color: red;
+	color: #428bca;
 }
 
 span.glyphicon-chevron-up {

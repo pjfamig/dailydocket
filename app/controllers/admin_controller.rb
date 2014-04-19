@@ -1,13 +1,16 @@
 class AdminController < ApplicationController
-  before_action :signed_in_user, only: :index
-  before_action :admin_user, only: :index
+  before_action :signed_in_user, only: [:index, :active_posts, 
+                          :pending_posts, :recent_comments, :users]
+  before_action :admin_user, only: [:index, :active_posts, 
+                          :pending_posts, :recent_comments, :users]
 
   def index
     @post  = current_user.posts.build                                                      
   end
   
   def active_posts
-    @feed_items = Post.where("active = ?", true).paginate(page: params[:page], :per_page => 10)
+    @voted_items = Post.evaluated_by(:post_votes, current_user)    
+    @feed_items = Post.where("active = ?", true).all # => paginate(page: params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
@@ -15,7 +18,8 @@ class AdminController < ApplicationController
   end
   
   def pending_posts
-    @feed_items = Post.where("active = ?", false).paginate(page: params[:page], :per_page => 10)
+    @voted_items = Post.evaluated_by(:post_votes, current_user)
+    @feed_items = Post.where("active = ?", false).all # => paginate(page: params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
@@ -23,6 +27,7 @@ class AdminController < ApplicationController
   end
   
   def recent_comments
+    @voted_items = Post.evaluated_by(:post_votes, current_user)
     @data = "Recent Comments (Ajax)"
     respond_to do |format|
       format.html
@@ -31,7 +36,7 @@ class AdminController < ApplicationController
   end
   
   def users
-    @users = User.paginate(page: params[:page], :per_page => 20)
+    @users = User.all # => paginate(page: params[:page], :per_page => 20)
     respond_to do |format|
       format.html
       format.js

@@ -1,8 +1,25 @@
 <li>
+	<div class="row">
+		<div class="col-md-9">
   <%= gravatar_for user, size: 52 %>
   <%= link_to user.name, user %>
   <% if current_user.superadmin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
+		</div>
+		<div class="col-md-2 col-offset-9">
+			<% if current_user.superadmin? %>
+				<% if user.admin? %>
+					<%= link_to make_admin_user_path(user), method: :put do %>
+						<button type="button" class="btn btn-primary">Admin</button>					
+					<% end %>
+				<% else %>
+					<%= link_to make_admin_user_path(user), method: :put do %>
+						<button type="button" class="btn btn-default">Make Admin</button>					
+					<% end %>				
+				<% end %>
+			<% end %>
+		</div>
+	</div>
 </li>

@@ -1,9 +1,13 @@
 Dailydocket::Application.routes.draw do
-  resources :users  
+  resources :users do
+    member { put :make_admin }
+  end
+    
   resources :password_resets
   
   resources :posts do
     member { post :vote }
+    member { put :activate }
     resources :comments, only: [:new, :create, :destroy] do
       member { post :vote }
     end
