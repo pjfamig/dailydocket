@@ -3,7 +3,7 @@
 
 	  <div class="col-xs-9">
 	
-		<div class="vote-buttons" id="vote-buttons">	
+		<div class="vote-buttons" id="vote-buttons-<%= post.id %>">	
 
 			<%= link_to vote_post_path(post, type: "up"), method: "post", class: "arrows", remote: true do %>
 				<% if current_user && post.evaluation_value(current_user, post) == "upvoted" %>

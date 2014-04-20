@@ -1,0 +1,17 @@
+<%= link_to vote_post_path(feed_item, type: "up"), method: "post", class: "arrows", remote: true do %>
+	<% if current_user && feed_item.evaluation_value(current_user, feed_item) == "upvoted" %>
+		<span class="glyphicon glyphicon-chevron-up voted_for"></span>
+	<% else %>
+		<span class="glyphicon glyphicon-chevron-up"></span>
+	<% end %>
+<% end %>
+
+<strong id="reputation-<%= feed_item.id %>"><%= feed_item.reputation_for(:post_votes).to_i %></strong>
+
+<%= link_to vote_post_path(feed_item, type: "down"), method: "post", class: "arrows", remote: true do %>
+	<% if current_user && feed_item.evaluation_value(current_user, feed_item) == "downvoted" %>
+		<span class="glyphicon glyphicon-chevron-down voted_for"></span>
+	<% else %>
+		<span class="glyphicon glyphicon-chevron-down"></span>
+	<% end %>
+<% end %>
