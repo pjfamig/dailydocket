@@ -6,7 +6,7 @@
 		<div class="vote-buttons" id="vote-buttons">	
 
 			<%= link_to vote_post_path(feed_item, type: "up"), method: "post", class: "arrows", remote: true do %>
-				<% if current_user && @voted_items.include?(feed_item) %>
+				<% if current_user && feed_item.evaluation_value(current_user, feed_item) == "upvoted" %>
 					<span class="glyphicon glyphicon-chevron-up voted_for"></span>
 				<% else %>
 					<span class="glyphicon glyphicon-chevron-up"></span>
@@ -17,7 +17,11 @@
 
 
 			<%= link_to vote_post_path(feed_item, type: "down"), method: "post", class: "arrows", remote: true do %>
-				<span class="glyphicon glyphicon-chevron-down"></span>
+				<% if current_user && feed_item.evaluation_value(current_user, feed_item) == "downvoted" %>
+					<span class="glyphicon glyphicon-chevron-down voted_for"></span>
+				<% else %>
+					<span class="glyphicon glyphicon-chevron-down"></span>
+				<% end %>
 			<% end %>	
 		</div>		
 		
