@@ -9,13 +9,6 @@ class PostsController < ApplicationController
     # => If render a new post form, must instantiate @post
     # => @post  = current_user.posts.build      
     # => necessary for modal?          
-
-    # posts user has voted on
-    if signed_in?
-      # doesnt specify up or down!
-      @voted_items = Post.evaluated_by(:post_votes, current_user)
-    
-    end
                                            
     if params[:tag]
       @feed_items = Post.tagged_with(params[:tag]).paginate(page: params[:page], 
@@ -26,10 +19,7 @@ class PostsController < ApplicationController
   end
   
   def top   
-    # posts user has voted on
-    if signed_in?
-      @voted_items = Post.evaluated_by(:post_votes, current_user)
-    end 
+
     # => @post  = current_user.posts.build        
     @feed_items = Post.paginate(page: params[:page], :per_page => 10).popular
     render 'posts/index'   
@@ -57,25 +47,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    
-    if signed_in?
-      
-      # evaluation_by does not work! 
-      # @value = @post.evaluation_by(:post_votes, current_user)
-      
-      # doesn't specify up or down
-      # @voted_items = Post.evaluated_by(:post_votes, current_user)
-            
-      # specify up or down - working but clunky      
-      @up_voted = ReputationSystem::Evaluation.where(:reputation_name => "post_votes", 
-              :value => "1.0", :source_id => current_user.id, :source_type => current_user.class.name,
-              :target_id => @post.id, :target_type => @post.class.name).exists?
-              
-      @down_voted = ReputationSystem::Evaluation.where(:reputation_name => "post_votes", 
-              :value => "-1.0", :source_id => current_user.id, :source_type => current_user.class.name,
-              :target_id => @post.id, :target_type => @post.class.name).exists?              
-    end
-    
     @comments = @post.comments.paginate(page: params[:page], :per_page => 20)
     @comment = @post.comments.build # if signed_in? => from tutorial, but
                                     # was based on user association whereas 
