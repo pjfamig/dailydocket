@@ -54,11 +54,18 @@ class PostsController < ApplicationController
   end
   
   def vote
+    
+    ##### algorithm for determining vote value #####
+    # t = time post was last updated
+    # t_seconds_ago = number of seconds from t to time
+    # s = upvotes - downvotes
+    # value = 
+    
     value = params[:type] == "up" ? 1 : -1
     @post = Post.find(params[:id])
     
-    # => have_voted = @post.evaluators_for(:post_votes)
-    
+    ##### unvoting #####
+    # => have_voted = @post.evaluators_for(:post_votes)  
     # => unless have_voted.include?(current_user) # vote
       @post.add_or_update_evaluation(:post_votes, value, current_user)
     # => else                                      # unvote
@@ -67,6 +74,7 @@ class PostsController < ApplicationController
 
     # => add conditional if logged in
     # => flash[:success] = "Thank you for voting!"
+    
     respond_to do |format|
       format.html { redirect_to :back }
       format.js
