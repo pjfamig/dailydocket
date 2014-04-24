@@ -1,0 +1,1 @@
+$("#reputation-<%= @comment.id %>").html("<%= @comment.reputation_for(:comment_votes).to_i %>")

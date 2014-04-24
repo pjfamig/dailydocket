@@ -1,6 +1,7 @@
 <% if params[:parent_id] %>
 
 <div class="nested_comments" id="new_comment_form">
+<li class="new_comment">
 <%= form_for([@post, @comment], remote: true, :html => { :role => "form" }) do |f| %>
   <%= render :partial => 'shared/error_messages', :locals => { :object => @comment } %>
 	<div class="form-group">
@@ -12,13 +13,14 @@
 		<%= f.submit "Post", class: "btn btn-large btn-primary" %>
 	</div>
 <% end %>
+</li>
 </div>
 
 <div class="nested_comments"><div id="empty_space_for_<%= params[:parent_id] %>"></div></div>
 
 
 <% else %>
-
+<li class="new_comment">
 <%= form_for([@post, @comment], :html => { :role => "form" }) do |f| %>
   <%= render :partial => 'shared/error_messages', :locals => { :object => @comment } %>
 	<div class="form-group">
@@ -29,6 +31,7 @@
   	<div class="btn-group">
 		<%= f.submit "Post", class: "btn btn-large btn-primary" %>
 	</div>
+</li>	
 <% end %>
 
 <% end %>

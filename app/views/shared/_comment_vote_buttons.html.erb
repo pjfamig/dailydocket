@@ -1,0 +1,20 @@
+<%= link_to vote_post_comment_path(comment.post_id, comment, type: "up"), method: "post", class: "comment_arrows", remote: true do %>
+	<% if current_user && comment.evaluation_value(current_user, comment) == "upvoted" %>
+		<span class="glyphicon glyphicon-chevron-up voted_for"></span>
+	<% else %>
+		<span class="glyphicon glyphicon-chevron-up"></span>
+	<% end %>
+<% end %>
+
+<strong id="reputation-<%= comment.id %>">
+	<%= comment.reputation_for(:comment_votes).to_i %>
+</strong>
+	
+
+<%= link_to vote_post_comment_path(comment.post_id, comment, type: "down"), method: "post", class: "comment_arrows", remote: true do %>
+	<% if current_user && comment.evaluation_value(current_user, comment) == "downvoted" %>
+		<span class="glyphicon glyphicon-chevron-down voted_for"></span>
+	<% else %>
+		<span class="glyphicon glyphicon-chevron-down"></span>
+	<% end %>
+<% end %>

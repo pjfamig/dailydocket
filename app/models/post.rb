@@ -53,6 +53,5 @@ class Post < ActiveRecord::Base
     else
       nil
     end
-    
   end
 end

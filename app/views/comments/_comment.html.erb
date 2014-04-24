@@ -1,10 +1,13 @@
 <li>
-	<!-- wrap all of this in proper styling -->
+	
+  <div class="vote-buttons" id="vote-buttons-<%= comment.id %>">	
+	 <%= render partial: 'shared/comment_vote_buttons', locals: { comment: comment } %>			
+  </div>	
 	
   <span class="user">
 	<%= link_to gravatar_for(comment.user, size: 34), comment.user %>
 	<%= link_to comment.user.username, comment.user %>
-	<span class="timestamp">Posted <%= time_ago_in_words(comment.created_at) %> ago.</span>
+	<span class="timestamp"><%= time_ago_in_words(comment.created_at) %> ago.</span>
 	<% if current_user?(comment.user) %> 
     <%= link_to "delete", post_comment_path(comment.post_id, comment), method: :delete,
                                      data: { confirm: "You sure?" },
@@ -13,11 +16,7 @@
   </span>
   <span class="content"><%= comment.content %></span>
 
-
-<%= pluralize comment.reputation_for(:comment_votes).to_i, "vote" %>
-| <%= link_to "up", vote_post_comment_path(comment.post_id, comment, type: "up"), method: "post" %>
-| <%= link_to "down", vote_post_comment_path(comment.post_id, comment, type: "down"), method: "post" %>
-| <%= link_to "Reply", new_post_comment_path(comment.post_id, :parent_id => comment), id: "reply-to-post-" + comment.id.to_s, remote: true %>
+<%= link_to "Reply", new_post_comment_path(comment.post_id, :parent_id => comment), id: "reply-to-post-" + comment.id.to_s, remote: true %>
 
 </li>
 

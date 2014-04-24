@@ -18,18 +18,6 @@ $grayMediumLight: #eaeaea;
     }
 }
 
-.nested_comments {
-  margin-left: 30px;
-}
-
-.nested_comments .nested_comments .nested_comments .nested_comments {
-	margin-left: 0;
-}
-
-
-#hidden_reply_field {
-	display: none;
-}
 
 
 /* universal */
@@ -327,10 +315,70 @@ input {
   }
 }
 
+
+.new_comment { 
+	margin-top: 10px;
+}
+
 .content {
 	display: block;
 }
 
+.nested_comments {
+  margin-left: 45px;
+}
+
+.nested_comments .nested_comments .nested_comments .nested_comments {
+	margin-left: 0;
+}
+
+
+#hidden_reply_field {
+	display: none;
+}
+
+
+/* vote buttons */
+
+.vote-buttons {
+	width: 18px !important;
+	float: left;
+	margin-right: 14px;
+	text-align: center;
+}
+
+.feed-item {
+	margin-right: 0px;
+}
+
+.arrows {
+	color: #999;
+}
+
+.comment_arrows {
+	color: #CCC;
+	
+	.glyphicon-chevron-up {
+		font-size: 0.9em;
+	}
+	.glyphicon-chevron-down {
+		font-size: 0.9em;
+		margin-left: -1px;	
+	}
+}
+
+.voted_for {
+	color: #428bca;
+}
+
+span.glyphicon-chevron-up {
+	font-size: 1.2em;
+}
+
+span.glyphicon-chevron-down {
+	font-size: 1.2em;
+	margin-left: -1px;	
+}
 
 /* tags */
 
@@ -378,33 +426,4 @@ input {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
-}
-
-
-.vote-buttons {
-	width: 18px !important;
-	float: left;
-	margin-right: 14px;
-	text-align: center;
-}
-
-.feed-item {
-	margin-right: 0px;
-}
-
-.arrows {
-	color: #999;
-}
-
-.voted_for {
-	color: #428bca;
-}
-
-span.glyphicon-chevron-up {
-	font-size: 1.2em;
-}
-
-span.glyphicon-chevron-down {
-	font-size: 1.2em;
-	margin-left: -1px;	
 }

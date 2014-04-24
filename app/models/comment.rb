@@ -25,4 +25,17 @@ class Comment < ActiveRecord::Base
     :source => :user,
     :source_of => { :reputation => :commenting_skill, :of => :user }
   
+  def evaluation_value(user, comment)
+    if @up_voted = ReputationSystem::Evaluation.where(:reputation_name => "comment_votes", 
+          :value => "1.0", :source_id => user.id, :source_type => user.class.name,
+          :target_id => comment.id, :target_type => comment.class.name).exists?
+      "upvoted"
+    elsif @down_voted = ReputationSystem::Evaluation.where(:reputation_name => "comment_votes", 
+          :value => "-1.0", :source_id => user.id, :source_type => user.class.name,
+          :target_id => comment.id, :target_type => comment.class.name).exists?
+      "downvoted"
+    else
+      nil
+    end
+  end  
 end

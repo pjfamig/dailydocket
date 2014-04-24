@@ -11,7 +11,7 @@
 		<ol class="list-unstyled comments">
 	    	<%= nested_comments @comments.arrange(:order => :created_at) %>
 	   	</ol>
-		<hr>
+		
 		
 		<% if signed_in? %>
 			<h5>Your Comment</h5>
