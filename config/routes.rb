@@ -25,6 +25,11 @@ Dailydocket::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',   via: 'delete'
   get   '/:tag',to: 'posts#index',        as: :tag
   
+  
+  # rewrite these routes to be similar to :tag route above?
+  # get 'admin/:tab, to: 'admin#tabs', as: :tab
+  # then add tabs method that checks param? ==> but this wouldnt create a route?
+  
   get   'admin/active_posts' => 'admin#active_posts', :as => :admin_active_posts
   get   'admin/pending_posts' => 'admin#pending_posts', :as => :admin_pending_posts
   get   'admin/recent_comments' => 'admin#recent_comments', :as => :admin_recent_comments
